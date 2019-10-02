@@ -1,5 +1,5 @@
-import { getModelForClass, prop } from "@hasezoey/typegoose"; // @hasezoey/typegoose@6.0.0-26
-import * as mongoose from "mongoose"; // mongoose@5.6.13
+import { getModelForClass, prop } from "@typegoose/typegoose"; // @typegoose/typegoose@6.0.0
+import * as mongoose from "mongoose"; // mongoose@5.7.3
 
 class User {
     @prop()
