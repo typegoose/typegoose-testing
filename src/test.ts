@@ -14,4 +14,6 @@ const UserModel = getModelForClass(User);
 
     const user = new UserModel({ username: "user1" });
     console.log(user);
+
+    await mongoose.disconnect();
 })();
