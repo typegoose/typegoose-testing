@@ -10,7 +10,7 @@ class User {
 const UserModel = getModelForClass(User);
 
 (async () => {
-    await mongoose.connect(`mongodb://localhost:27017/`, { useNewUrlParser: true, dbName: "verify26" });
+    await mongoose.connect(`mongodb://localhost:27017/`, { useNewUrlParser: true, dbName: "verifyMASTER", useCreateIndex: true, useUnifiedTopology: true });
 
     const user = new UserModel({ username: "user1" });
     console.log(user);
