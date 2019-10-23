@@ -19,16 +19,16 @@
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "doc": "typedoc --out ./doc ./src --mode modules",
     "clean": "rm -rf ./doc ./lib ./coverage ./nyc_output",
-    "prepublish": "npm run build"
+    "prepare": "npm run build"
   },
   "repository": "none",
   "author": "hasezoey",
   "license": "MIT",
   "devDependencies": {
     "@types/debug": "^4.1.5",
-    "@types/node": "^12.7.12",
+    "@types/node": "^12.11.6",
     "@types/source-map-support": "^0.5.0",
-    "@types/mongoose": "^5.5.20",
+    "@types/mongoose": "^5.5.23",
     "ts-node": "^8.4.1",
     "tslint": "^5.20.0",
     "tslint-eslint-rules": "^5.4.0",
@@ -36,9 +36,9 @@
     "typescript": "^3.6.4"
   },
   "dependencies": {
-    "@typegoose/typegoose": "^6.0.3",
+    "@typegoose/typegoose": "^6.0.4",
     "debug": "^4.1.1",
-    "mongoose": "^5.7.4",
+    "mongoose": "^5.7.6",
     "mongoose-findorcreate": "^3.0.0",
     "source-map-support": "^0.5.13"
   }
