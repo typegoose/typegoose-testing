@@ -59,6 +59,10 @@ class User {
 class Note { }
 
 class SomeClass {
+    @Field((type) => String)
+    @prop({ required: true })
+    public enitiyRef!: string;
+
     @Field((type) => NoteEnityUnion)
     @prop({ required: true, refPath: "entityRef" })
     public entity!: Ref<Property | Contact | Supplier | User>;
