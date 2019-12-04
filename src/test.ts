@@ -1,7 +1,7 @@
-// NodeJS: 12.13.0
+// NodeJS: 12.13.1
 // MongoDB: 4.2-bionic (Docker)
-import { getModelForClass, prop } from "@typegoose/typegoose"; // @typegoose/typegoose@6.1.5
-import * as mongoose from "mongoose"; // mongoose@5.7.12
+import { getModelForClass, prop } from "@typegoose/typegoose"; // @typegoose/typegoose@6.1.6
+import * as mongoose from "mongoose"; // mongoose@5.7.13
 
 class User {
     @prop()
