@@ -4,17 +4,17 @@ import { getModelForClass, prop } from "@typegoose/typegoose"; // @typegoose/typ
 import * as mongoose from "mongoose"; // mongoose@5.8.3
 
 class User {
-    @prop()
-    public username?: string;
+  @prop()
+  public username?: string;
 }
 const UserModel = getModelForClass(User);
 
 (async () => {
-    await mongoose.connect(`mongodb://localhost:27017/`, { useNewUrlParser: true, dbName: "verifyMASTER", useCreateIndex: true, useUnifiedTopology: true });
+  await mongoose.connect(`mongodb://localhost:27017/`, { useNewUrlParser: true, dbName: "verifyMASTER", useCreateIndex: true, useUnifiedTopology: true });
 
-    const user = new UserModel({ username: "user1" });
+  const user = new UserModel({ username: "user1" });
 
-    console.log(user);
+  console.log(user);
 
-    await mongoose.disconnect();
+  await mongoose.disconnect();
 })();

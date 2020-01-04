@@ -34,12 +34,12 @@
             "severity": "error",
             "options": [
                 "spaces",
-                4
+                2
             ]
         },
         "ter-indent": [
             true,
-            4
+            2
         ],
         "quotemark": {
             "severity": "warn",
