@@ -36,7 +36,7 @@
     "typescript": "^3.7.5"
   },
   "dependencies": {
-    "@typegoose/typegoose": "^6.3.0",
+    "@typegoose/typegoose": "^6.3.1",
     "debug": "^4.1.1",
     "mongoose": "^5.8.11",
     "mongoose-findorcreate": "^3.0.0",
