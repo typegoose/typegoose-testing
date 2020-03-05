@@ -34,6 +34,7 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
+    "@typegoose/auto-increment": "^0.3.0",
     "@typegoose/typegoose": "^6.4.0",
     "mongoose": "^5.9.3",
     "mongoose-findorcreate": "^3.0.0",
