@@ -25,7 +25,7 @@
   "author": "hasezoey",
   "license": "MIT",
   "devDependencies": {
-    "@types/mongoose": "^5.7.37",
+    "@types/mongoose": "^5.10.1",
     "@types/node": "^14.14.10",
     "@types/source-map-support": "^0.5.3",
     "ts-node": "^9.0.0",
@@ -36,7 +36,7 @@
   "dependencies": {
     "@typegoose/auto-increment": "^0.6.0",
     "@typegoose/typegoose": "^7.4.2",
-    "mongoose": "^5.10.12",
+    "mongoose": "5.10.18",
     "source-map-support": "^0.5.19"
   }
 }
