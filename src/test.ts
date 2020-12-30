@@ -1,20 +1,58 @@
 // NodeJS: 14.15.3
 // MongoDB: 4.2-bionic (Docker)
-import { getModelForClass, prop } from "@typegoose/typegoose"; // @typegoose/typegoose@7.4.6
+import { getModelForClass, prop, Ref } from "@typegoose/typegoose"; // @typegoose/typegoose@7.4.6
 import * as mongoose from "mongoose"; // mongoose@5.10.18 @types/mongoose@5.10.3
 
-class User {
+class Y {
   @prop()
-  public username?: string;
+  public dummy?: string;
 }
-const UserModel = getModelForClass(User);
+
+const YModel = getModelForClass(Y);
+
+class X {
+  @prop({ required: true, ref: 'Y' })
+  public a!: Ref<Y>;
+  @prop({ required: true, ref: 'Y' })
+  public b!: Ref<Y>;
+}
+const XModel = getModelForClass(X);
 
 (async () => {
-  await mongoose.connect(`mongodb://localhost:27017/`, { useNewUrlParser: true, dbName: "verifyMASTER", useCreateIndex: true, useUnifiedTopology: true });
+  await mongoose.connect(`mongodb://localhost:27017/`, { useNewUrlParser: true, dbName: "verify467", useCreateIndex: true, useUnifiedTopology: true });
 
-  const doc = new UserModel({ username: "user1" });
+  // fails
+  // {
+  //   const y1 = new YModel({ dummy: "hi1" });
+  //   const x1 = new XModel({});
 
-  console.log(doc);
+  //   await x1.validate(); // should fail, because both "a" and "b" are missing
+  // }
+
+  // fails
+  // {
+  //   const y1 = new YModel({ dummy: "hi2" });
+  //   const x1 = new XModel({ a: y1 });
+
+  //   await x1.validate(); // should fail, because "b" is missing
+  // }
+
+  // fails
+  // {
+  //   const y1 = new YModel({ dummy: "hi3" });
+  //   const x1 = new XModel({ b: y1 });
+
+  //   await x1.validate(); // should fail, because "a" is missing
+  // }
+
+  // runs
+  {
+    const y1 = new YModel({ dummy: "hi4" });
+    const y2 = new YModel({ dummy: "hi5" });
+    const x1 = new XModel({ a: y1, b: y2 });
+
+    await x1.validate(); // should not fail
+  }
 
   await mongoose.disconnect();
 })();
