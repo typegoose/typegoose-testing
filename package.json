@@ -11,15 +11,13 @@
     "lib/*.d.ts"
   ],
   "scripts": {
-    "start": "npm run build && npm run run",
     "run:directly": "ts-node ./src/test.ts",
-    "run": "npm run build && node lib/test.js",
+    "run": "yarn run build && node lib/test.js",
     "watch": "tsc -w",
     "build": "tsc",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "doc": "typedoc --out ./doc ./src --mode modules",
-    "clean": "rm -rf ./doc ./lib ./coverage ./nyc_output",
-    "prepare": "npm run build"
+    "clean": "rm -rf ./doc ./lib ./coverage ./nyc_output"
   },
   "repository": "none",
   "author": "hasezoey",
