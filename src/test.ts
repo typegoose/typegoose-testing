@@ -1,20 +1,14 @@
 // NodeJS: 14.16.1
 // MongoDB: 4.2-bionic (Docker)
-import { getModelForClass, prop } from "@typegoose/typegoose"; // @typegoose/typegoose@7.6.0
-import * as mongoose from "mongoose"; // mongoose@5.10.18 @types/mongoose@5.10.5
+import { getModelForClass, modelOptions, prop } from "@typegoose/typegoose"; // @typegoose/typegoose@8.0.0-beta.5
+import * as mongoose from "mongoose"; // mongoose@5.12.5
 
-class User {
+@modelOptions({ schemaOptions: { collection: "Something" } })
+class MultiModel {
   @prop()
-  public username?: string;
+  public dummy?: string;
 }
-const UserModel = getModelForClass(User);
 
-(async () => {
-  await mongoose.connect(`mongodb://localhost:27017/`, { useNewUrlParser: true, dbName: "verifyMASTER", useCreateIndex: true, useUnifiedTopology: true });
-
-  const doc = new UserModel({ username: "user1" });
-
-  console.log(doc);
-
-  await mongoose.disconnect();
-})();
+const model = getModelForClass(MultiModel);
+// expect(model.modelName).to.be.equal('MultiModel'); // changed to "console.log" for visual
+console.log("ModelName", model.modelName); // expecting "MultiModel"
