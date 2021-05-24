@@ -1,15 +1,15 @@
 // NodeJS: 16.1.0
 // MongoDB: 4.2-bionic (Docker)
-import { getModelForClass, modelOptions, prop, Ref } from "@typegoose/typegoose"; // @typegoose/typegoose@8.0.0-beta.5
+import { getModelForClass, modelOptions, prop, Ref } from "@typegoose/typegoose"; // @typegoose/typegoose@8.0.0-beta.9
 import { Base } from "@typegoose/typegoose/lib/defaultClasses";
-import * as mongoose from "mongoose"; // mongoose@5.12.5
+import * as mongoose from "mongoose"; // mongoose@5.12.10
 
 class User {
   @prop()
   public dummy?: string;
 }
 
-const UserModel = getModelForClass(User);;
+const UserModel = getModelForClass(User);
 
 @modelOptions({ schemaOptions: { collection: "bookshelfs", validateBeforeSave: false } })
 export class BookCase implements Base {
