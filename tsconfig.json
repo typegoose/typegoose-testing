@@ -14,7 +14,7 @@
         "newLine": "LF",
         "sourceMap": true,
         "removeComments": true,
-        "strict": true,
+        "strict": false,
         "allowUnreachableCode": false,
         "pretty": true,
         "declaration": true,
