@@ -44,7 +44,7 @@ const TestModel = mongoose.model("test", TestSchema);
 
   console.log("found", inspect(found_doc1, false, 5));
 
-  await found_doc1.populate("testprop.$*");
+  await found_doc1.populate("testprop.$*").execPopulate();
 
   console.log("populated", inspect(found_doc1, false, 5));
 
