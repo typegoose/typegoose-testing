@@ -22,6 +22,10 @@ const DummySchema = new mongoose.Schema({
 const TestSchema = new mongoose.Schema({
   testprop: {
     type: Map,
+    // of: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "dummy"
+    // },
     of: mongoose.Schema.Types.ObjectId,
     ref: "dummy"
   }
