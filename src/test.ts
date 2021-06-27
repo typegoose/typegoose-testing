@@ -1,20 +1,25 @@
 // NodeJS: 16.3.0
 // MongoDB: 4.2-bionic (Docker)
-import { getModelForClass, prop } from "@typegoose/typegoose"; // @typegoose/typegoose@8.0.0-beta.16
+// import { getModelForClass, prop } from "@typegoose/typegoose"; // @typegoose/typegoose@8.0.0-beta.16
 import * as mongoose from "mongoose"; // mongoose@5.12.14
 
-class User {
-  @prop()
-  public username?: string;
-}
-const UserModel = getModelForClass(User);
+const schema1 = new mongoose.Schema({
+  someArray: [{
+    type: String,
+    castNonArrays: false
+  }]
+});
+
+const model1 = mongoose.model("model1", schema1);
 
 (async () => {
-  await mongoose.connect(`mongodb://localhost:27017/`, { useNewUrlParser: true, dbName: "verifyMASTER", useCreateIndex: true, useUnifiedTopology: true });
+  await mongoose.connect(`mongodb://localhost:44361/`, { useNewUrlParser: true, dbName: "verifyMASTER", useCreateIndex: true, useUnifiedTopology: true });
 
-  const doc = new UserModel({ username: "user1" });
+  const newdoc = await model1.create({ someArray: "hello" }); // no validation error
 
-  console.log(doc);
+  const found = await model1.findById(newdoc);
+
+  console.log(found);
 
   await mongoose.disconnect();
 })();
