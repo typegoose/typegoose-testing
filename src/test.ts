@@ -6,6 +6,9 @@ import * as mongoose from "mongoose"; // mongoose@5.13.5
 function referenceValidate(arg1: any) {
   // output in mongoose 5.13.5 is:
   // arg1 { _id: 610555f50ce8361e51d60838, dummy: 'hello', __v: 0 } object true false
+
+  // output in mongoose 6.0 (head 33bfeb66febab44afad46ed259a9b64dba0684eb) is:
+  // arg1 new ObjectId("610556719380303ef174ba53") object false true
   console.log("arg1", arg1, typeof arg1, arg1 instanceof mongoose.Model, arg1 instanceof mongoose.Types.ObjectId);
 
   return true;
@@ -24,7 +27,7 @@ const NormalSchema = new mongoose.Schema({
 const NormalModel = mongoose.model("Normal", NormalSchema);
 
 (async () => {
-  await mongoose.connect(`mongodb://localhost:27017/`, { useNewUrlParser: true, dbName: "verifyMASTER", useCreateIndex: true, useUnifiedTopology: true });
+  await mongoose.connect(`mongodb://localhost:27017/`, { dbName: "verifyMASTER" });
 
   const dummyDoc = await DummyModel.create({ dummy: "hello" });
 

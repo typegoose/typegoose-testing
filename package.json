@@ -31,7 +31,7 @@
     "typescript": "^4.3.4"
   },
   "dependencies": {
-    "mongoose": "~5.13.5",
+    "mongoose": "https://github.com/Automattic/mongoose.git#6.0",
     "source-map-support": "^0.5.19"
   }
 }
