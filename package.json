@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "@typegoose/auto-increment": "^0.6.0",
-    "@typegoose/typegoose": "~8.0.1",
+    "@typegoose/typegoose": "~8.1.1",
     "mongoose": "~5.13.5",
     "source-map-support": "^0.5.19"
   }
