@@ -1,8 +1,8 @@
-// NodeJS: 16.6.0
+// NodeJS: 16.6.1
 // MongoDB: 4.2-bionic (Docker)
 // import { defaultClasses, getModelForClass, prop, ReturnModelType } from "@typegoose/typegoose"; // @typegoose/typegoose@8.1.1
 // import { AnyParamConstructor, BeAnObject } from "@typegoose/typegoose/lib/types";
-import * as mongoose from "mongoose"; // mongoose@5.13.5
+import * as mongoose from "mongoose"; // mongoose@6.0.0-rc1
 
 // enum AudioModel {
 //   A = "story-item",
@@ -106,16 +106,10 @@ const Model1 = mongoose.model<DocumentType<IModel1>, ModelType<IModel1>>("m1", M
 const Model2 = mongoose.model<DocumentType<IModel2>, ModelType<IModel2>>("m2", Model2Schema);
 
 const someCache: Record<string, ModelType<IBase>> = {
-  A: Model1, // error
-  B: Model2 // error
+  A: Model1, // error in in pre-6.0
+  B: Model2 // error in in pre-6.0
 };
 
 const someMap: Map<string, ModelType<IBase>> = new Map();
-someMap.set("A", Model1); // error
-someMap.set("B", Model2); // error
-
-// (async () => {
-//   await mongoose.connect(`mongodb://localhost:27017/`, { useNewUrlParser: true, dbName: "verifyMASTER", useCreateIndex: true, useUnifiedTopology: true });
-
-//   await mongoose.disconnect();
-// })();
+someMap.set("A", Model1); // error in in pre-6.0
+someMap.set("B", Model2); // error in in pre-6.0
