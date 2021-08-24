@@ -15,7 +15,7 @@
     "run": "yarn run build && node lib/test.js",
     "watch": "tsc -w",
     "build": "tsc",
-    "lint": "tslint -c tslint.json -p tsconfig.json",
+    "lint": "eslint -c ./.eslintrc.js './**/*.{js,ts}'",
     "doc": "typedoc --out ./doc ./src --mode modules",
     "clean": "rm -rf ./doc ./lib ./coverage ./nyc_output"
   },
@@ -25,9 +25,13 @@
   "devDependencies": {
     "@types/node": "^12.12.6",
     "ts-node": "^10.1.0",
-    "tslint": "^6.1.3",
-    "tslint-eslint-rules": "^5.4.0",
-    "typescript": "^4.3.5"
+    "typescript": "^4.3.5",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.1",
+    "prettier": "^2.3.2",
+    "@typescript-eslint/eslint-plugin": "^4.29.3",
+    "@typescript-eslint/parser": "^4.29.3"
   },
   "dependencies": {
     "@typegoose/auto-increment": "^0.9.0",
