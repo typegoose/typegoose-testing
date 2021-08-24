@@ -1,5 +1,5 @@
 {
-  "name": "@hasezoey/verify-typegoose-issues",
+  "name": "@typegoose/verify-typegoose-issues",
   "version": "0.0.1",
   "description": "Bootstrap TS Project All Files needed for TS",
   "main": "lib/app.js",
