@@ -16,24 +16,28 @@ class Class2 {
 const Model2 = getModelForClass(Class2);
 
 // this does not error in 4.2.4
+// this does not error in 4.3.5
 {
   const doc = new Model1();
 
   const test = doc as Class2;
 }
 // this does not error in 4.2.4
+// this does not error in 4.3.5
 {
   const doc = new Model1();
 
   const test = doc as Class2 | null;
 }
 // this *does* error in 4.2.4
+// this does not error in 4.3.5
 {
   const doc = new Model1();
 
   const test = doc as number | null;
 }
 // this *does* error in 4.2.4
+// this does not error in 4.3.5
 {
   const doc = new Model1();
 
