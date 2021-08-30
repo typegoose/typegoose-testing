@@ -17,6 +17,7 @@ const Model2 = getModelForClass(Class2);
 
 // this does not error in 4.2.4
 // this does not error in 4.3.5
+// this does not error in 4.4.2
 {
   const doc = new Model1();
 
@@ -24,6 +25,7 @@ const Model2 = getModelForClass(Class2);
 }
 // this does not error in 4.2.4
 // this does not error in 4.3.5
+// this does not error in 4.4.2
 {
   const doc = new Model1();
 
@@ -31,6 +33,7 @@ const Model2 = getModelForClass(Class2);
 }
 // this *does* error in 4.2.4
 // this does not error in 4.3.5
+// this *does* error in 4.4.2
 {
   const doc = new Model1();
 
@@ -38,6 +41,7 @@ const Model2 = getModelForClass(Class2);
 }
 // this *does* error in 4.2.4
 // this does not error in 4.3.5
+// this *does* error in 4.4.2
 {
   const doc = new Model1();
 
