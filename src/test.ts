@@ -3,24 +3,39 @@
 import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@8.2.0
 import * as mongoose from 'mongoose'; // mongoose@5.13.8
 
-class User {
+class Class1 {
   @prop()
   public username?: string;
 }
+const Model1 = getModelForClass(Class1);
 
-const UserModel = getModelForClass(User);
+class Class2 {
+  @prop()
+  public another?: string;
+}
+const Model2 = getModelForClass(Class2);
 
-(async () => {
-  await mongoose.connect(`mongodb://localhost:27017/`, {
-    useNewUrlParser: true,
-    dbName: 'verifyMASTER',
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-  });
+// this does not error in 4.2.4
+{
+  const doc = new Model1();
 
-  const doc = new UserModel({ username: 'user1' });
+  const test = doc as Class2;
+}
+// this does not error in 4.2.4
+{
+  const doc = new Model1();
 
-  console.log(doc);
+  const test = doc as Class2 | null;
+}
+// this *does* error in 4.2.4
+{
+  const doc = new Model1();
 
-  await mongoose.disconnect();
-})();
+  const test = doc as number | null;
+}
+// this *does* error in 4.2.4
+{
+  const doc = new Model1();
+
+  const test = doc as null;
+}
