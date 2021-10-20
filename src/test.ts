@@ -1,7 +1,7 @@
-// NodeJS: 16.8.0
+// NodeJS: 16.11.0
 // MongoDB: 4.2-bionic (Docker)
-import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@8.3.0
-import * as mongoose from 'mongoose'; // mongoose@5.13.9
+import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@9.2.0
+import * as mongoose from 'mongoose'; // mongoose@6.0.11
 
 class User {
   @prop()
@@ -12,10 +12,7 @@ const UserModel = getModelForClass(User);
 
 (async () => {
   await mongoose.connect(`mongodb://localhost:27017/`, {
-    useNewUrlParser: true,
     dbName: 'verifyMASTER',
-    useCreateIndex: true,
-    useUnifiedTopology: true,
   });
 
   const doc = new UserModel({ username: 'user1' });
