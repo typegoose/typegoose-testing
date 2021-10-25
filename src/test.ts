@@ -49,9 +49,9 @@ const CatModel = AnimalModel.discriminator('Cat', CatSchema, 'Cat');
   await mongoose.connect(`mongodb://localhost:27017/`, {
     dbName: 'verifyMASTER',
 
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
+    // useNewUrlParser: true,
+    // useUnifiedTopology: true,
+    // useCreateIndex: true,
   });
 
   await mongoose.connection.db.dropDatabase();
@@ -62,10 +62,12 @@ const CatModel = AnimalModel.discriminator('Cat', CatSchema, 'Cat');
 
   const results = await AnimalModel.find({ cageNumber: 'dog-xxx' });
   // on mongoose 5.x the result is: [] (expected)
+  // on mongoose 6.x the result is: all 3 documents
   console.log('result', results);
 
   const found = await AnimalModel.find({ cageNumber: 0 }).exec();
   // on mongoose 5.x the result is: [] (expected)
+  // on mongoose 6.x the result is: all 3 documents
   console.log('found', found);
 
   await mongoose.disconnect();
