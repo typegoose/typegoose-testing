@@ -1,23 +1,72 @@
 // NodeJS: 16.11.0
 // MongoDB: 4.2-bionic (Docker)
-import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@9.2.0
-import * as mongoose from 'mongoose'; // mongoose@6.0.12
+// import { getDiscriminatorModelForClass, getModelForClass, modelOptions, prop } from '@typegoose/typegoose';
+import * as mongoose from 'mongoose';
 
-class User {
-  @prop()
-  public username?: string;
-}
+const AnimalSchema = new mongoose.Schema(
+  {
+    patientNumber: {
+      required: true,
+      unique: true,
+      type: String,
+    },
+  },
+  { collection: 'animal' }
+);
 
-const UserModel = getModelForClass(User);
+const DogSchema = AnimalSchema.clone();
+DogSchema.add({ cageNumber: { type: String } });
+
+const CatSchema = AnimalSchema.clone();
+CatSchema.add({ nameTag: { type: String } });
+
+const AnimalModel = mongoose.model('Animal', AnimalSchema);
+const DogModel = AnimalModel.discriminator('Dog', DogSchema, 'Dog');
+const CatModel = AnimalModel.discriminator('Cat', CatSchema, 'Cat');
+
+// below are the original typegoose models
+// @modelOptions({ schemaOptions: { collection: 'animal' } })
+// class Animal {
+//   @prop({ required: true, unique: true })
+//   public patientNumber!: string;
+// }
+
+// class Dog extends Animal {
+//   @prop()
+//   public cageNumber!: string;
+// }
+
+// class Cat extends Animal {
+//   @prop()
+//   public nameTag!: string;
+// }
+
+// const AnimalModel = getModelForClass(Animal);
+// const DogModel = getDiscriminatorModelForClass(AnimalModel, Dog);
+// const CatModel = getDiscriminatorModelForClass(AnimalModel, Cat);
 
 (async () => {
   await mongoose.connect(`mongodb://localhost:27017/`, {
     dbName: 'verifyMASTER',
+
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
   });
 
-  const doc = new UserModel({ username: 'user1' });
+  await mongoose.connection.db.dropDatabase();
 
-  console.log(doc);
+  const doc1 = await AnimalModel.create({ patientNumber: 'animal-001' });
+  const doc2 = await DogModel.create({ patientNumber: 'dog-002', cageNumber: 'dog-002' });
+  const doc3 = await CatModel.create({ patientNumber: 'cat-003', nameTag: 'cat-003' });
+
+  const results = await AnimalModel.find({ cageNumber: 'dog-xxx' });
+  // on mongoose 5.x the result is: [] (expected)
+  console.log('result', results);
+
+  const found = await AnimalModel.find({ cageNumber: 0 }).exec();
+  // on mongoose 5.x the result is: [] (expected)
+  console.log('found', found);
 
   await mongoose.disconnect();
 })();
