@@ -25,7 +25,7 @@
   "devDependencies": {
     "@types/bson": "4.0.x",
     "@types/mongodb": "3.x",
-    "@types/mongoose": "5.10.x",
+    "@types/mongoose": "5.x.x",
     "@types/node": "^12.20.33",
     "@typescript-eslint/eslint-plugin": "^5.1.0",
     "@typescript-eslint/parser": "^5.1.0",
@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@typegoose/auto-increment": "^1.0.0",
-    "@typegoose/typegoose": "7.x.x",
-    "mongoose": "5.10.18"
+    "@typegoose/typegoose": "8.x.x",
+    "mongoose": "5.13.x"
   }
 }
