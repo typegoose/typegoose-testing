@@ -1,8 +1,8 @@
 // NodeJS: 16.11.1
 // MongoDB: 4.2-bionic (Docker)
-// import { getModelForClass, prop, Ref, ReturnModelType } from '@typegoose/typegoose'; // @typegoose/typegoose@9.2.0
+// import { getModelForClass, prop, Ref, ReturnModelType } from '@typegoose/typegoose'; // @typegoose/typegoose@8.3.0
 // import { AnyParamConstructor } from '@typegoose/typegoose/lib/types';
-import * as mongoose from 'mongoose'; // mongoose@6.0.12
+import * as mongoose from 'mongoose'; // mongoose@5.13.13
 
 // class Nested {
 //   @prop()
@@ -43,10 +43,11 @@ const BaseSchema = new mongoose.Schema({
 });
 const BaseModel = mongoose.model('Base', BaseSchema);
 
-function getModelForDb<T>(databaseName: string, model: mongoose.Model<T>): mongoose.Model<T> {
+function getModelForDb<T extends mongoose.Document<any>>(databaseName: string, model: mongoose.Model<T>): mongoose.Model<T> {
   const db = mongoose.connection.useDb(databaseName);
 
-  const DbModel = db.model(model.modelName, model.schema) as mongoose.Model<T>;
+  // type cast, because this is not a types issue
+  const DbModel = db.model(model.modelName, model.schema) as unknown as mongoose.Model<T>;
 
   return DbModel;
 }
