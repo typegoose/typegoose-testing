@@ -1,28 +1,28 @@
 // NodeJS: 17.6.0
 // MongoDB: 4.2-bionic (Docker)
-import { DocumentType, getModelForClass, isDocument, prop, Ref } from '@typegoose/typegoose'; // @typegoose/typegoose@9.7.0
-import * as mongoose from 'mongoose'; // mongoose@6.2.4
+import typegoose from '@typegoose/typegoose'; // @typegoose/typegoose@9.7.0
+import mongoose from 'mongoose'; // mongoose@6.2.4
 
 class Dog {
-  @prop()
+  @typegoose.prop()
   public name?: string;
 }
 
 class Cat {
-  @prop({ ref: () => Dog })
-  public partner?: Ref<Dog>;
+  @typegoose.prop({ ref: () => Dog })
+  public partner?: typegoose.Ref<Dog>;
 
-  public async hasPartner(this: DocumentType<Cat>) {
+  public async hasPartner(this: typegoose.DocumentType<Cat>) {
     await this.populate('partner');
 
-    if (isDocument(this.partner)) {
+    if (typegoose.isDocument(this.partner)) {
       console.log(this.partner.name);
     }
   }
 }
 
-const DogModel = getModelForClass(Dog);
-const CatModel = getModelForClass(Cat);
+const DogModel = typegoose.getModelForClass(Dog);
+const CatModel = typegoose.getModelForClass(Cat);
 
 (async () => {
   await mongoose.connect(`mongodb://localhost:27017/`, {

@@ -10,7 +10,7 @@
         "outDir": "lib",
         "moduleResolution": "node",
         "target": "es6",
-        "module": "commonjs",
+        "module": "es6",
         "newLine": "LF",
         "sourceMap": true,
         "removeComments": true,
@@ -22,7 +22,8 @@
         "tsBuildInfoFile": ".tsbuildinfo",
         "lib": [
             "esnext"
-        ]
+        ],
+        "esModuleInterop": true
     },
     "include": [
         "src/**/*"
