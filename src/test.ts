@@ -1,47 +1,92 @@
 // NodeJS: 17.6.0
 // MongoDB: 4.2-bionic (Docker)
-import { getModelForClass, modelOptions, prop, PropType, Severity } from '@typegoose/typegoose'; // @typegoose/typegoose@9.7.0
+// import { getModelForClass, modelOptions, prop, PropType, Severity } from '@typegoose/typegoose'; // @typegoose/typegoose@9.7.0
 import * as mongoose from 'mongoose'; // mongoose@6.2.4
 
 // Original Typegoose Definition
-@modelOptions({
-  options: {
-    allowMixed: Severity.ALLOW,
+// @modelOptions({
+//   options: {
+//     allowMixed: Severity.ALLOW,
+//   },
+//   schemaOptions: {
+//     collection: 'ResourceParameter',
+//   },
+// })
+// class ResourceParameter {
+//   @prop()
+//   public value: any;
+// }
+
+// abstract class Resource {
+//   @prop({ type: () => ResourceParameter, _id: true }, PropType.MAP)
+//   public parameters: Map<string, ResourceParameter> = new Map<string, ResourceParameter>();
+// }
+
+// @modelOptions({
+//   schemaOptions: {
+//     collection: 'ObjectNested',
+//   },
+// })
+// class ObjectNested extends Resource {
+//   private dummy?: never;
+// }
+
+// @modelOptions({
+//   schemaOptions: {
+//     collection: 'ObjectMain',
+//   },
+// })
+// class ObjectMain extends Resource {
+//   @prop({ type: () => ObjectNested })
+//   public object_nested?: ObjectNested;
+// }
+
+// const ObjectMainModel = getModelForClass(ObjectMain);
+
+const schema_resourceparameter = new mongoose.Schema(
+  {
+    value: {
+      type: mongoose.Schema.Types.Mixed,
+    },
   },
-  schemaOptions: {
-    collection: 'ResourceParameter',
+  { collection: 'ResourceParameter' }
+);
+
+const schema_resource = new mongoose.Schema({
+  parameters: {
+    type: Map,
+    of: schema_resourceparameter,
   },
-})
+});
+
+const schema_objectnested = schema_resource.clone();
+schema_objectnested.set('collection', 'ObjectNested');
+
+const schema_objectmain = schema_resource.clone();
+schema_objectmain.set('collection', 'ObjectMain');
+schema_objectmain.add({
+  object_nested: {
+    type: schema_objectnested,
+  },
+});
+
 class ResourceParameter {
-  @prop()
-  public value: any;
+  public value?: any;
 }
 
-abstract class Resource {
-  @prop({ type: () => ResourceParameter, _id: true }, PropType.MAP)
-  public parameters: Map<string, ResourceParameter> = new Map<string, ResourceParameter>();
+class Resource {
+  public parameters: Map<string, ResourceParameter> = new Map();
 }
 
-@modelOptions({
-  schemaOptions: {
-    collection: 'ObjectNested',
-  },
-})
 class ObjectNested extends Resource {
   private dummy?: never;
 }
 
-@modelOptions({
-  schemaOptions: {
-    collection: 'ObjectMain',
-  },
-})
 class ObjectMain extends Resource {
-  @prop({ type: () => ObjectNested })
   public object_nested?: ObjectNested;
 }
 
-const ObjectMainModel = getModelForClass(ObjectMain);
+const ObjectMainModel = mongoose.model('ObjectMain', schema_objectmain);
 
 (async () => {
   await mongoose.connect(`mongodb://localhost:27017/`, {
