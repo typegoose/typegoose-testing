@@ -3,22 +3,19 @@
 // Typescript 4.7.2
 import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@9.9.0
 import * as mongoose from 'mongoose'; // mongoose@6.3.5
-
-class User {
-  @prop()
-  public username?: string;
-}
-
-const UserModel = getModelForClass(User);
+import Forms1Model from './models/form1.model';
+import { addToForm } from './page3a.server';
 
 (async () => {
   await mongoose.connect(`mongodb://localhost:27017/`, {
-    dbName: 'verifyMASTER',
+    dbName: 'discordCanaryGrapher',
   });
 
-  const doc = new UserModel({ username: 'user1' });
+  const initdoc = await Forms1Model.create({ user: 'someuser', isComplete: false });
 
-  console.log(doc);
+  await addToForm('someuser', initdoc._id.toString(), {
+    drugDetails: { dateStarted: 'somedate', nameOfDrug: 'named', identifier: 0 },
+  });
 
   await mongoose.disconnect();
 })();
