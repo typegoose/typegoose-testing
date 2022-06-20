@@ -1,33 +1,61 @@
 // NodeJS: 18.3.0
 // MongoDB: 5.0 (Docker)
 // Typescript 4.7.2
-import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@9.9.0
-import { BeAnObject, DocumentType } from '@typegoose/typegoose/lib/types';
+// import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@9.9.0
+// import { BeAnObject, DocumentType } from '@typegoose/typegoose/lib/types';
 import * as mongoose from 'mongoose'; // mongoose@6.3.9
 
-type SubDocumentType<T, QueryHelpers = BeAnObject> = DocumentType<T, QueryHelpers> & mongoose.Types.Subdocument;
-type ArraySubDocumentType<T, QueryHelpers = BeAnObject> = DocumentType<T, QueryHelpers> & mongoose.Types.ArraySubdocument;
+// type SubDocumentType<T, QueryHelpers = BeAnObject> = DocumentType<T, QueryHelpers> & mongoose.Types.Subdocument;
+// type ArraySubDocumentType<T, QueryHelpers = BeAnObject> = DocumentType<T, QueryHelpers> & mongoose.Types.ArraySubdocument;
 
-class Nested {
-  @prop()
-  public dummy?: string;
+// class Nested {
+//   @prop()
+//   public dummy?: string;
+// }
+
+// class Parent {
+//   @prop()
+//   public username?: string;
+
+//   @prop({ type: String })
+//   public map?: Map<string, string>;
+
+//   @prop()
+//   public nested?: SubDocumentType<Nested>;
+
+//   @prop()
+//   public nestedArray?: ArraySubDocumentType<Nested>[];
+// }
+
+// const ParentModel = getModelForClass(Parent);
+
+type DocumentType<T> = mongoose.Document<any> & T;
+type SubDocumentType<T> = DocumentType<T> & mongoose.Types.Subdocument;
+type ArraySubDocumentType<T> = DocumentType<T> & mongoose.Types.ArraySubdocument;
+
+interface Nested {
+  dummy?: string;
 }
 
-class Parent {
-  @prop()
-  public username?: string;
-
-  @prop({ type: String })
-  public map?: Map<string, string>;
-
-  @prop()
-  public nested?: SubDocumentType<Nested>;
-
-  @prop()
-  public nestedArray?: ArraySubDocumentType<Nested>[];
+interface Parent {
+  username?: string;
+  map?: Map<string, string>;
+  nested?: SubDocumentType<Nested>;
+  nestedArray?: ArraySubDocumentType<Nested>[];
 }
 
-const ParentModel = getModelForClass(Parent);
+const NestedSchema = new mongoose.Schema({
+  dummy: { type: String },
+});
+
+const ParentSchema = new mongoose.Schema({
+  username: { type: String },
+  map: { type: Map, of: String },
+  nested: { type: NestedSchema },
+  nestedArray: [{ type: NestedSchema }],
+});
+
+const ParentModel = mongoose.model<DocumentType<Parent>>('Parent', ParentSchema);
 
 (async () => {
   await mongoose.connect(`mongodb://localhost:27017/`, {
