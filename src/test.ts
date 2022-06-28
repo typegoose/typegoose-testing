@@ -62,7 +62,7 @@ const ParentModel = mongoose.model<DocumentType<Parent>>('Parent', ParentSchema)
     dbName: 'verifyMASTER',
   });
 
-  const doc = new ParentModel({
+  const doc = await ParentModel.create({
     username: 'user1',
     map: { key1: 'value1', key2: 'value2' },
     nested: { dummy: 'hello' },
