@@ -3,7 +3,7 @@
 // Typescript 4.7.2
 // import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@9.9.0
 // import { BeAnObject, DocumentType } from '@typegoose/typegoose/lib/types';
-import * as mongoose from 'mongoose'; // mongoose@6.4.0
+import * as mongoose from 'mongoose'; // mongoose@6.4.1
 
 // type SubDocumentType<T, QueryHelpers = BeAnObject> = DocumentType<T, QueryHelpers> & mongoose.Types.Subdocument;
 // type ArraySubDocumentType<T, QueryHelpers = BeAnObject> = DocumentType<T, QueryHelpers> & mongoose.Types.ArraySubdocument;
