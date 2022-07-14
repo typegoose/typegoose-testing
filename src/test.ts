@@ -37,8 +37,8 @@ NestedSchema.loadClass(Test);
 
 const TopSchema = new mongoose.Schema({
   nestProp: {
-    type: NestedSchema,
-    // type: [NestedSchema],
+    // type: NestedSchema,
+    type: [NestedSchema],
   },
 });
 
@@ -50,34 +50,34 @@ const TopModel = mongoose.model('Top', TopSchema);
   });
 
   const createdDoc = await TopModel.create({
-    nestProp: {
-      price: 10.01,
-      otherPrice: 11.01,
-    },
-    // nestProp: [
-    //   {
-    //     price: 10.01,
-    //     otherPrice: 11.01,
-    //   },
-    // ],
+    // nestProp: {
+    //   price: 10.01,
+    //   otherPrice: 11.01,
+    // },
+    nestProp: [
+      {
+        price: 10.01,
+        otherPrice: 11.01,
+      },
+    ],
   });
 
   const converted = createdDoc.toJSON();
   console.log(converted);
 
-  assertion(typeof converted.nestProp === 'object');
-  assertion(typeof (converted.nestProp as any).someVirt === 'string');
-  assertion(typeof converted.nestProp.price === 'string'); // current does not work
-  assertion(typeof converted.nestProp.otherPrice === 'string'); // current does not work
+  // assertion(typeof converted.nestProp === 'object');
+  // assertion(typeof (converted.nestProp as any).someVirt === 'string');
+  // assertion(typeof converted.nestProp.price === 'string'); // current does not work
+  // assertion(typeof converted.nestProp.otherPrice === 'string'); // current does not work
 
   // the following only when the types are made a array
 
-  // const inner = converted!.nestProp[0];
+  const inner = converted!.nestProp[0];
 
-  // assertion(typeof inner === 'object');
-  // assertion(typeof (inner as any).someVirt === 'string');
-  // assertion(typeof inner.price === 'string'); // works
-  // assertion(typeof inner.otherPrice === 'string'); // works
+  assertion(typeof inner === 'object');
+  assertion(typeof (inner as any).someVirt === 'string');
+  assertion(typeof inner.price === 'string'); // works
+  assertion(typeof inner.otherPrice === 'string'); // works
 
   await mongoose.disconnect();
 })();
