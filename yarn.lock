@@ -97,10 +97,10 @@
   resolved "https://registry.yarnpkg.com/@tsconfig/node16/-/node16-1.0.2.tgz#423c77877d0569db20e1fc80885ac4118314010e"
   integrity sha512-eZxlbI8GZscaGS7kkc/trHTT5xgrjH3/1n2JDwusC9iahPKWMRvRjJSAN5mCXviuTGQ/lHnhvv8Q1YTpnfz9gA==
 
-"@typegoose/auto-increment@^1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@typegoose/auto-increment/-/auto-increment-1.4.0.tgz#8f9e765e8a1676a9fb96c68ecf6782a233b97b21"
-  integrity sha512-gDfWw+bjYczUPx6Y7I/4y6MGc5ddmLY1SkRP18Gs6kq/USoEWQpFkJwkhn827Q/VqCLnpMH4pQN3nnTDwi53Zg==
+"@typegoose/auto-increment@^1.4.1":
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@typegoose/auto-increment/-/auto-increment-1.4.1.tgz#47862227d5d84b100f1bf784ce386b7770396d42"
+  integrity sha512-Hh7Vcjlz3GWkbEKwH7UxsbPQD1vpm76vFMCPOm2z36E+dCu2hyHruWnaAIK8co6iNGxyam617e+6yuHr114fCQ==
   dependencies:
     loglevel "^1.8.0"
     tslib "^2.4.0"
