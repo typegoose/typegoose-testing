@@ -36,6 +36,8 @@
   "dependencies": {
     "@typegoose/auto-increment": "^1.4.1",
     "@typegoose/typegoose": "~9.10.1",
+    "colors": "^1.4.0",
+    "mongodb": "4.8.0",
     "mongoose": "6.4.4"
   }
 }
