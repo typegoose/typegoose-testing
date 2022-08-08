@@ -1,24 +1,40 @@
 // NodeJS: 18.7.0
 // MongoDB: 5.0 (Docker)
 // Typescript 4.7.4
-import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@9.11.0
 import * as mongoose from 'mongoose'; // mongoose@6.5.1
 
-class User {
-  @prop()
-  public username?: string;
-}
+const nestedSchema = new mongoose.Schema({
+  1: {
+    type: Number,
+    default: 0,
+  },
+});
 
-const UserModel = getModelForClass(User);
+const topSchema = new mongoose.Schema({
+  nestedPath1: {
+    mapOfSchema: {
+      type: Map,
+      of: nestedSchema,
+    },
+  },
+});
+
+const topModel = mongoose.model('topModel', topSchema);
+
+const data = {
+  nestedPath1: {
+    mapOfSchema: {
+      // 2022: { 1: 0 }, // this data does not affect the error
+    },
+  },
+};
 
 (async () => {
   await mongoose.connect(`mongodb://localhost:27017/`, {
-    dbName: 'verifyMASTER',
+    dbName: 'mongooseGh12220',
   });
 
-  const doc = new UserModel({ username: 'user1' });
-
-  console.log(doc);
+  await topModel.create(data); // error "RangeError: Maximum call stack size exceeded"
 
   await mongoose.disconnect();
 })();
