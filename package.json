@@ -36,6 +36,6 @@
   "dependencies": {
     "@typegoose/auto-increment": "^1.6.0",
     "@typegoose/typegoose": "~9.11.0",
-    "mongoose": "6.5.1"
+    "mongoose": "6.5.2"
   }
 }
