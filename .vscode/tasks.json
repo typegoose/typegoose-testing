@@ -7,10 +7,6 @@
             "problemMatcher": [
                 "$tsc-watch"
             ],
-            "isBackground": true,
-            "runOptions": {
-                "runOn": "folderOpen"
-            }
         },
         {
             "type": "npm",
