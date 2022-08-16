@@ -4,21 +4,32 @@
 import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@9.11.0
 import * as mongoose from 'mongoose'; // mongoose@6.5.2
 
-class User {
+class BaseModelClass {
+  _id?: string;
+
   @prop()
-  public username?: string;
+  public firstname?: string;
 }
 
-const UserModel = getModelForClass(User);
+const BaseModel = getModelForClass(BaseModelClass);
 
 (async () => {
   await mongoose.connect(`mongodb://localhost:27017/`, {
     dbName: 'verifyMASTER',
   });
 
-  const doc = new UserModel({ username: 'user1' });
-
-  console.log(doc);
+  await BaseModel.bulkWrite([
+    {
+      updateOne: {
+        update: {
+          firstname: 'test', // Type instantiation is excessively deep and possibly infinite.ts(2589)
+        },
+        filter: {
+          firstname: 'asdsd',
+        },
+      },
+    },
+  ]);
 
   await mongoose.disconnect();
 })();
