@@ -1,17 +1,27 @@
 // NodeJS: 18.7.0
 // MongoDB: 5.0 (Docker)
 // Typescript 4.7.4
-import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@9.11.0
+// import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@9.11.0
 import * as mongoose from 'mongoose'; // mongoose@6.5.2
 
-class BaseModelClass {
-  _id?: string;
+// class BaseModelClass {
+//   @prop()
+//   public firstname?: string;
+// }
 
-  @prop()
-  public firstname?: string;
+// const BaseModel = getModelForClass(BaseModelClass);
+
+type DocumentType<T> = mongoose.Document<any, any, T> & T;
+
+interface BaseModelClassDoc {
+  firstname: string;
 }
 
-const BaseModel = getModelForClass(BaseModelClass);
+const baseModelClassSchema = new mongoose.Schema({
+  firstname: String,
+});
+
+const BaseModel = mongoose.model<mongoose.Model<DocumentType<BaseModelClassDoc>>>('test', baseModelClassSchema);
 
 (async () => {
   await mongoose.connect(`mongodb://localhost:27017/`, {
