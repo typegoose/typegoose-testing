@@ -1,24 +1,26 @@
 // NodeJS: 18.8.0
 // MongoDB: 5.0 (Docker)
 // Typescript 4.8.3
-import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@9.12.0
+// import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@9.12.0
 import * as mongoose from 'mongoose'; // mongoose@6.6.1
 
-class User {
-  @prop()
-  public username?: string;
+function globalHook() {}
+
+function globalPlugin(schema: any) {
+  console.log('PLUGIN');
+  // schema.pre('save', globalHook);
+  schema.pre('save', function nonGlobalHook() {});
 }
 
-const UserModel = getModelForClass(User);
+const baseSchema = new mongoose.Schema({});
+baseSchema.plugin(globalPlugin);
 
-(async () => {
-  await mongoose.connect(`mongodb://localhost:27017/`, {
-    dbName: 'verifyMASTER',
-  });
+const BaseModel = mongoose.model('Base', baseSchema);
 
-  const doc = new UserModel({ username: 'user1' });
+const disSchema = new mongoose.Schema({});
+disSchema.plugin(globalPlugin);
 
-  console.log(doc);
+const DisModel = BaseModel.discriminator('Dis', disSchema);
 
-  await mongoose.disconnect();
-})();
+console.log('TEST1', (BaseModel.schema as any).s.hooks._pres.get('save')); // only has 1 "nonGlobalHook"
+console.log('TEST2', (DisModel.schema as any).s.hooks._pres.get('save')); // has 2 "nonGlobalHook"
