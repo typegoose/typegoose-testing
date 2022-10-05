@@ -1,24 +1,38 @@
 // NodeJS: 18.8.0
 // MongoDB: 5.0 (Docker)
 // Typescript 4.8.4
-import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@9.12.1
 import * as mongoose from 'mongoose'; // mongoose@6.6.4
 
-class User {
-  @prop()
-  public username?: string;
-}
+mongoose.set('runValidators', true); // without this option it does not occur
 
-const UserModel = getModelForClass(User);
+const countrySchema = new mongoose.Schema({ title: String });
+
+const areasSubSchema = new mongoose.Schema({ country: [countrySchema] });
+
+const WorldSchema = new mongoose.Schema({
+  areas: areasSubSchema,
+});
+
+const WorldModel = mongoose.model('World', new mongoose.Schema({ title: String }));
+const EarthModel = WorldModel.discriminator('Earth', WorldSchema);
 
 (async () => {
   await mongoose.connect(`mongodb://localhost:27017/`, {
     dbName: 'verifyMASTER',
   });
 
-  const doc = new UserModel({ username: 'user1' });
+  const data = {
+    areas: {
+      country: [
+        {
+          title: 'titlec',
+        },
+      ],
+    },
+  };
+  const eventDoc = await EarthModel.findByIdAndUpdate({ _id: new mongoose.Types.ObjectId() }, data);
 
-  console.log(doc);
+  console.log(eventDoc);
 
   await mongoose.disconnect();
 })();
