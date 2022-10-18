@@ -1,4 +1,4 @@
-// NodeJS: 18.8.0
+// NodeJS: 18.10.0
 // MongoDB: 5.0 (Docker)
 // Typescript 4.8.4
 import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@9.12.1
