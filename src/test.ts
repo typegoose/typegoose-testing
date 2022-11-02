@@ -1,24 +1,30 @@
 // NodeJS: 18.10.0
 // MongoDB: 5.0 (Docker)
 // Typescript 4.8.4
-import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@9.12.1
 import * as mongoose from 'mongoose'; // mongoose@6.6.5
+import { ObjectId } from 'bson';
 
-class User {
-  @prop()
-  public username?: string;
+interface IUser {
+  name: string;
+  email: string;
+  organizationId: ObjectId;
 }
 
-const UserModel = getModelForClass(User);
+const userSchema = new mongoose.Schema<IUser>({
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  organizationId: { type: mongoose.Schema.Types.ObjectId, ref: 'Organization' },
+});
+
+const User = mongoose.model<IUser>('User', userSchema);
 
 (async () => {
   await mongoose.connect(`mongodb://localhost:27017/`, {
     dbName: 'verifyMASTER',
   });
 
-  const doc = new UserModel({ username: 'user1' });
-
-  console.log(doc);
+  const user = new User();
+  user.organizationId = new ObjectId();
 
   await mongoose.disconnect();
 })();
