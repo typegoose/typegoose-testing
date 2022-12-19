@@ -17,6 +17,7 @@
         "strict": true,
         "allowUnreachableCode": false,
         "pretty": true,
+        "exactOptionalPropertyTypes": true,
         "declaration": true,
         "incremental": true,
         "tsBuildInfoFile": ".tsbuildinfo",
