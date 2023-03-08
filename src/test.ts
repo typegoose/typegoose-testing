@@ -62,6 +62,7 @@ const FileModel = getModelForClass(File);
   });
 
   mongoose.set('debug', true);
+  mongoose.set('strictQuery', false);
 
   const fileDoc = await FileModel.create({});
 
