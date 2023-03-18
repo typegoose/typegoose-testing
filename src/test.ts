@@ -29,8 +29,8 @@ class User {
   @prop()
   name?: string;
 
-  // @prop({ type: () => Car })
-  @prop({})
+  @prop({ type: () => Car })
+  // @prop({})
   cars?: Car[];
 }
 
@@ -74,7 +74,7 @@ const UserModel = getModelForClass(User);
   const data = await doc.populate('cars.brand');
   //  const data = await u.populate({ path: "cars.brand", model: BrandModel });
 
-  // no "cars.brand" field
+  // has proper "cars.brand" field
   console.log('data is ', JSON.stringify(data, null, 2));
 
   await mongoose.disconnect();
