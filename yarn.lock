@@ -119,18 +119,18 @@
   resolved "https://registry.yarnpkg.com/@tsconfig/node16/-/node16-1.0.2.tgz#423c77877d0569db20e1fc80885ac4118314010e"
   integrity sha512-eZxlbI8GZscaGS7kkc/trHTT5xgrjH3/1n2JDwusC9iahPKWMRvRjJSAN5mCXviuTGQ/lHnhvv8Q1YTpnfz9gA==
 
-"@typegoose/auto-increment@^2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@typegoose/auto-increment/-/auto-increment-2.2.0.tgz#d0aff40484cc0bf50f1ed8fabf838e0fe55f06cf"
-  integrity sha512-s4zoJpfy6QzDBxLfqe9bZeKMP5pisTqscCER3dxROH3oBEWv8o47ZsjHdKzooh/Mhxf7jVIEOHdYLefdKjapkA==
+"@typegoose/auto-increment@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@typegoose/auto-increment/-/auto-increment-3.0.0.tgz#d8053e95da0dcc9a1e88b0db1026944efe41a837"
+  integrity sha512-ikuQWXkza27C1BjbvMITF71KEu7sgV57r1VN+aL6sJ7meykaV0ZhNpR9uz9gfFmUKGM3OX87LDqP2crJGDaRdA==
   dependencies:
     loglevel "^1.8.1"
     tslib "^2.5.0"
 
-"@typegoose/typegoose@11.0.0-beta.1":
-  version "11.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@typegoose/typegoose/-/typegoose-11.0.0-beta.1.tgz#e0c3527c45006b3e3464f1f56f4b044fd139ce35"
-  integrity sha512-/VAOv9ZEWoDmXbGWaxn7jPUdVa2TDmsKd8Pisn4RgJ/61DJhIf0QGpoTtaqVY7mv+nXpZ60ToeHFL5qVgoApsg==
+"@typegoose/typegoose@11.0.0":
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/@typegoose/typegoose/-/typegoose-11.0.0.tgz#e48e58c2928eacbb95981d41f76a605e56358107"
+  integrity sha512-X9v0LY4fqoIGKwS1KkzTNztynckksVPvgWDKXJSuTpVJOfO5XG8B6aRjS7QYlmiCimPu6d3ihrHTzxKUqKAdhg==
   dependencies:
     lodash "^4.17.20"
     loglevel "^1.8.1"
@@ -862,10 +862,10 @@ mongodb@5.1.0:
   optionalDependencies:
     saslprep "^1.0.3"
 
-mongoose@7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-7.0.0.tgz#4b1394fdd56fcf0d6e78c7be9768edcc3254cc26"
-  integrity sha512-U0YPURDld+k/nvvSG1mRClQSjZMRXwQKSU5yb9PslRnOmVz0UlBD7SjSnjUuGT0yk+7BH+kJNimsKqMxYAKkMA==
+mongoose@7.0.3:
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-7.0.3.tgz#576375acb436f96cd3350fb63fddbac7ae51ff9c"
+  integrity sha512-3n8vc1/mssuxKa6vfghSocp3MeiCFYzhX36Ok+PsDNNYzHC9tw3rNkAMLemIwZ2jgXqkZ7CfKOxkzjp/d/SWfg==
   dependencies:
     bson "^5.0.1"
     kareem "2.5.1"
