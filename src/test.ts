@@ -1,24 +1,42 @@
 // NodeJS: 18.10.0
 // MongoDB: 5.0 (Docker)
 // Typescript 4.9.5
-import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@11.0.0
 import * as mongoose from 'mongoose'; // mongoose@7.0.3
 
-class User {
-  @prop()
-  public username?: string;
-}
+const schema1 = new mongoose.Schema({
+  normalProp: String,
+});
 
-const UserModel = getModelForClass(User);
+schema1.virtual('virtProp').get(() => 'hello1');
 
-(async () => {
-  await mongoose.connect(`mongodb://localhost:27017/`, {
-    dbName: 'verifyMASTER',
-  });
+const model1 = mongoose.model('Test1', schema1);
 
-  const doc = new UserModel({ username: 'user1' });
+const doc1 = new model1({ normalProp: 'normal1' });
 
-  console.log(doc);
+console.log('1normal', doc1);
+console.log('1toJSON virtuals', doc1.toJSON({ virtuals: true }));
+console.log('1toObject virtuals', doc1.toObject({ virtuals: true }));
 
-  await mongoose.disconnect();
-})();
+const schema2 = new mongoose.Schema(
+  {
+    normalProp: String,
+  },
+  {
+    toObject: {
+      virtuals: true,
+    },
+    toJSON: {
+      virtuals: true,
+    },
+  }
+);
+
+schema2.virtual('virtProp').get(() => 'hello2');
+
+const model2 = mongoose.model('Test2', schema2);
+
+const doc2 = new model2({ normalProp: 'normal2' });
+
+console.log('2normal', doc2);
+console.log('2toJSON', doc2.toJSON());
+console.log('2toObject', doc2.toObject());
