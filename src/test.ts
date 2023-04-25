@@ -11,7 +11,7 @@ class User {
 
 const UserModel = getModelForClass(User);
 
-(async () => {
+async function main() {
   await mongoose.connect(`mongodb://localhost:27017/`, {
     dbName: 'verifyMASTER',
   });
@@ -21,4 +21,6 @@ const UserModel = getModelForClass(User);
   console.log(doc);
 
   await mongoose.disconnect();
-})();
+}
+
+main();
