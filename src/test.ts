@@ -1,24 +1,50 @@
 // NodeJS: 18.10.0
 // MongoDB: 5.0 (Docker)
 // Typescript 4.9.5
-import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@11.0.2
+import { getModelForClass, modelOptions, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@11.0.2
+import { assertion } from '@typegoose/typegoose/lib/internal/utils';
 import * as mongoose from 'mongoose'; // mongoose@7.0.5
+import { inspect } from 'util';
 
-class User {
-  @prop()
-  public username?: string;
+@modelOptions({})
+class TestingMultiDimArrays {
+  @prop({ type: Number, items: Number, dim: 2 })
+  public intArray?: number[][];
 }
-
-const UserModel = getModelForClass(User);
+const TestingMultiDimArraysModel = getModelForClass(TestingMultiDimArrays);
 
 async function main() {
   await mongoose.connect(`mongodb://localhost:27017/`, {
     dbName: 'verifyMASTER',
   });
 
-  const doc = new UserModel({ username: 'user1' });
+  let testObj = new TestingMultiDimArraysModel({
+    intArray: [
+      [1, 2],
+      [3, 4],
+    ],
+  });
+  await testObj.save();
+  testObj = await TestingMultiDimArraysModel.findById(testObj._id).orFail();
 
-  console.log(doc);
+  console.log('testobj', testObj);
+
+  //fails
+  // getChanges():
+  // {
+  //   '$set': {
+  //     'intArray.$.0': [ [ undefined, undefined ], [ undefined, undefined ] ]
+  //   },
+  //   '$inc': { __v: 1 }
+  // }
+  // save Error:
+  // The positional operator did not find the match needed from the query.
+  // MongoServerError: The positional operator did not find the match needed from the query
+  testObj.intArray![0][0] = 9;
+  console.log('changes', inspect(testObj.getChanges(), undefined, Infinity));
+  await testObj.save();
+  testObj = await TestingMultiDimArraysModel.findById(testObj._id).orFail();
+  assertion(testObj.intArray![0][0] === 9);
 
   await mongoose.disconnect();
 }
