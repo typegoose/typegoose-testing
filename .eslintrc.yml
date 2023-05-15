@@ -1,0 +1,62 @@
+---
+# Env Vars #
+env:
+  es6: true
+  node: true
+
+ignorePatterns:
+  - '!.*'
+  - '**/node_modules/.*'
+
+# Parser vars #
+parser: '@typescript-eslint/parser'
+parserOptions:
+  ecmaVersion: 2018
+
+# Plugins #
+plugins:
+  - '@typescript-eslint'
+  # - mongodb
+extends:
+  - plugin:@typescript-eslint/recommended
+
+# Rules #
+rules:
+  indent:
+    - 1
+    - tab
+    - SwitchCase: 1
+  no-undef: 2
+  no-unreachable: 2
+  no-unused-expressions: 1
+  no-unused-vars: 0
+  comma-dangle:
+    - 1
+    - only-multiline
+  no-multi-spaces:
+    - 1
+    - exceptions:
+        VariableDeclarator: true
+  no-shadow-restricted-names: 0
+  eqeqeq:
+    - 1
+    - smart
+  no-dupe-keys: 2
+  no-duplicate-case: 2
+  no-extra-semi: 2
+  max-depth:
+    - 1
+    - 4
+  no-empty: 2
+  '@typescript-eslint/no-var-requires': off
+  '@typescript-eslint/explicit-function-return-type': off
+  '@typescript-eslint/no-explicit-any': off
+  '@typescript-eslint/ban-ts-ignore': off
+  '@typescript-eslint/interface-name-prefix': off
+  '@typescript-eslint/class-name-casing': off
+  '@typescript-eslint/no-use-before-define':
+    - error
+    - functions: false
+      classes: true
+  '@typescript-eslint/no-extra-parens': 2
+  '@typescript-eslint/ban-ts-comment': 0

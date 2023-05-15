@@ -15,7 +15,7 @@
     "run": "yarn run build && node lib/test.js",
     "watch": "tsc -w",
     "build": "tsc",
-    "lint": "eslint -c ./.eslintrc.js './**/*.{js,ts}'",
+    "lint": "eslint -c ./.eslintrc.yml './**/*.{js,ts}'",
     "doc": "typedoc --out ./doc ./src --mode modules",
     "clean": "rm -rf ./doc ./lib ./coverage ./nyc_output"
   },

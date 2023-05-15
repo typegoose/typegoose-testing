@@ -1,26 +1,42 @@
 // NodeJS: 18.10.0
 // MongoDB: 5.0 (Docker)
 // Typescript 4.9.5
-import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@11.0.2
-import * as mongoose from 'mongoose'; // mongoose@7.0.5
+// import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@11.0.2
+// import * as mongoose from 'mongoose'; // mongoose@7.0.5
 
-class User {
-  @prop()
-  public username?: string;
-}
+import { index } from '@typegoose/typegoose';
 
-const UserModel = getModelForClass(User);
+@index({})
+@index(
+	{
+		user: 1,
+		deleted: 1,
+		facility: 1,
+		provider: 1,
+	},
+	{
+		background: true,
+	}
+)
+class T {}
 
-async function main() {
-  await mongoose.connect(`mongodb://localhost:27017/`, {
-    dbName: 'verifyMASTER',
-  });
+// class User {
+//   @prop()
+//   public username?: string;
+// }
 
-  const doc = new UserModel({ username: 'user1' });
+// const UserModel = getModelForClass(User);
 
-  console.log(doc);
+// async function main() {
+//   await mongoose.connect(`mongodb://localhost:27017/`, {
+//     dbName: 'verifyMASTER',
+//   });
 
-  await mongoose.disconnect();
-}
+//   const doc = new UserModel({ username: 'user1' });
 
-main();
+//   console.log(doc);
+
+//   await mongoose.disconnect();
+// }
+
+// main();
