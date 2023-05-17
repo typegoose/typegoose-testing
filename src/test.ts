@@ -1,32 +1,26 @@
 // NodeJS: 19.9.0
 // MongoDB: 5.0 (Docker)
 // Typescript 4.9.5
-import { getDiscriminatorModelForClass, getModelForClass, modelOptions, prop, Ref } from '@typegoose/typegoose'; // @typegoose/typegoose@11.1.0
+import { getModelForClass, modelOptions, prop, Ref } from '@typegoose/typegoose'; // @typegoose/typegoose@11.1.0
 import * as mongoose from 'mongoose'; // mongoose@7.1.1
-
-enum USER_TYPES {
-  TEACHER = 'teacher',
-}
 
 class Book {
   @prop({ required: true })
   name!: string;
 }
 
-@modelOptions({
-  schemaOptions: {
-    discriminatorKey: 'type',
-  },
-})
-class User {
-  @prop({ required: true, enum: USER_TYPES })
-  type!: USER_TYPES;
+@modelOptions({ schemaOptions: { toJSON: { virtuals: true }, toObject: { virtuals: true } } })
+class NestedNested {
+  @prop()
+  bookId?: mongoose.Schema.Types.ObjectId;
 
-  @prop({ required: true })
-  firstName!: string;
-
-  // @prop({ required: true })
-  // lastName!: string;
+  @prop({
+    localField: 'bookId',
+    foreignField: '_id',
+    justOne: true,
+    ref: () => Book,
+  })
+  readonly book?: Ref<Book>;
 }
 
 @modelOptions({ schemaOptions: { toJSON: { virtuals: true }, toObject: { virtuals: true } } })
@@ -44,12 +38,12 @@ class Nested {
     ref: () => Book,
   })
   readonly book?: Ref<Book>;
+
+  @prop({ type: () => [NestedNested] })
+  nestedNested?: NestedNested[];
 }
 
-class Teacher extends User {
-  @prop({ required: true })
-  salary!: number;
-
+class Teacher {
   @prop({ type: () => [mongoose.Schema.Types.ObjectId] })
   bookIds?: mongoose.Schema.Types.ObjectId[];
 
@@ -72,15 +66,7 @@ const BookModel = getModelForClass(Book, {
   },
 });
 
-const UserModel = getModelForClass(User, {
-  schemaOptions: {
-    collection: 'users',
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true },
-  },
-});
-
-const TeacherModel = getDiscriminatorModelForClass(UserModel, Teacher, USER_TYPES.TEACHER, {
+const TeacherModel = getModelForClass(Teacher, {
   schemaOptions: {
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
@@ -100,19 +86,30 @@ async function main() {
   });
 
   const teacher = await TeacherModel.create({
-    firstName: 'Vasyl',
-    // lastName: 'Kh',
-    salary: 1000,
     bookIds: [book1._id, book2._id],
     nested: {
       a: 1000,
       bookId: book1._id,
+      nestedNested: [
+        {
+          bookId: book1._id,
+        },
+        {
+          bookId: book2._id,
+        },
+      ],
     },
   });
 
-  const qTeacher = await TeacherModel.findOne().populate('books').populate('nested.book').exec();
+  const qTeacher = await TeacherModel.findById(teacher._id)
+    .populate('books')
+    .populate('nested.book')
+    .populate('nested.nestedNested.book')
+    .exec();
 
-  console.log('qTeacher', qTeacher);
+  console.log('qTeacher?.nested?.nestedNested', qTeacher?.nested?.nestedNested);
+  const toObjectTeacher = qTeacher?.toObject({ virtuals: true });
+  console.log('toObjectTeacher?.nested?.nestedNested', toObjectTeacher?.nested?.nestedNested);
 
   await mongoose.disconnect();
 }
