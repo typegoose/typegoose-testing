@@ -1,26 +1,13 @@
+/* eslint-disable @typescript-eslint/ban-types */
 // NodeJS: 19.9.0
 // MongoDB: 5.0 (Docker)
 // Typescript 4.9.5
-import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@11.2.0
-import * as mongoose from 'mongoose'; // mongoose@7.2.1
+// import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@11.2.0
+import * as mongoose from 'mongoose'; // mongoose@7.2.2
 
-class User {
-  @prop()
-  public username?: string;
+export function isRefTypeArray<T, S extends mongoose.RefType>(
+  docs: mongoose.Types.Array<mongoose.PopulatedDoc<T, S>> | null | undefined
+  // error on the next line
+): docs is mongoose.Types.Array<S> {
+  return Array.isArray(docs) && docs.every((v) => /* some testing func */ true);
 }
-
-const UserModel = getModelForClass(User);
-
-async function main() {
-  await mongoose.connect(`mongodb://localhost:27017/`, {
-    dbName: 'verifyMASTER',
-  });
-
-  const doc = new UserModel({ username: 'user1' });
-
-  console.log(doc);
-
-  await mongoose.disconnect();
-}
-
-main();
