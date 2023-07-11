@@ -148,16 +148,26 @@ async function main() {
       aRequiredProp: 'hello',
     },
     {
-      'aList.$[].listWithDiscriminators.$[id].propA': 'hello 123123',
-    },
-    {
-      arrayFilters: [
-        {
-          // 'id.type': Types.TypeWithPropA,
-          'id.type': Types[0],
-        },
-      ],
+      // aList: {
+      //   0: {
+      //     listWithDiscriminators: {
+      //       0: {
+      //         propA: 'hello 123123',
+      //       },
+      //     },
+      //   },
+      // },
+      'aList.0.listWithDiscriminators.0.propA': 'hello 123123',
+      // 'aList.$[].listWithDiscriminators.$[id].propA': 'hello 123123',
     }
+    // {
+    //   arrayFilters: [
+    //     {
+    //       // 'id.type': Types.TypeWithPropA,
+    //       'id.type': Types[0],
+    //     },
+    //   ],
+    // }
   ).exec();
 
   await mongoose.disconnect();
