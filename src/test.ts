@@ -2,7 +2,7 @@
 // MongoDB: 5.0 (Docker)
 // Typescript 4.9.5
 // import { getModelForClass, modelOptions, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@11.3.0
-import * as mongoose from 'mongoose'; // mongoose@7.3.1
+import * as mongoose from 'mongoose'; // mongoose@7.3.3
 
 const Types = ['typeWithPropA', 'typeWithPropB'];
 
