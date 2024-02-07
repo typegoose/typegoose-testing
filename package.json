@@ -34,8 +34,8 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@typegoose/auto-increment": "^3.6.1",
-    "@typegoose/typegoose": "11.6.0",
-    "mongoose": "7.6.4"
+    "@typegoose/auto-increment": "^4.1.0",
+    "@typegoose/typegoose": "12.1.0",
+    "mongoose": "8.1.0"
   }
 }
