@@ -4,7 +4,7 @@
   "description": "Bootstrap TS Project All Files needed for TS",
   "main": "lib/app.js",
   "engines": {
-    "node": ">=14.17.0"
+    "node": ">=16.20.1"
   },
   "files": [
     "lib/*.js",
@@ -23,7 +23,7 @@
   "author": "hasezoey",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "~14.18.63",
+    "@types/node": "~16.11.7",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8.56.0",
