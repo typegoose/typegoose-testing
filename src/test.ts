@@ -10,6 +10,10 @@ class AdminLogEntity {
   public username?: string;
 }
 
+interface AdminLogSaveParams {
+  username?: string,
+}
+
 async function main() {
   await mongoose.connect(`mongodb://localhost:27017/`, {
     dbName: 'verifyMASTER',
@@ -19,11 +23,26 @@ async function main() {
   const adminLogModel: ReturnModelType<typeof AdminLogEntity, BeAnObject> = getModelForClass(AdminLogEntity);
   const options: mongoose.CreateOptions = { session };
 
-  const adminLogEntity = await adminLogModel.create({}, options);
+  const params = {
+    username: 'a',
+  }
+
+  const params2: AdminLogSaveParams = {
+    username: 'b',
+  }
+
+  // This does not work
+  const adminLogEntity = await adminLogModel.create(params, options);
+  // But the next 2 lines work
+  const adminLogEntity2 = await adminLogModel.create(params2, options);
+  const adminLogEntity3 = await adminLogModel.create({ username: 'a' }, options);
 
   console.log('entity', adminLogEntity);
+  console.log('entity2', adminLogEntity2);
+  console.log('entity3', adminLogEntity3);
 
   await mongoose.disconnect();
 }
 
 main();
+
