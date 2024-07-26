@@ -4,8 +4,8 @@
 import { DocumentType, Ref, getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@12.5.0
 import * as mongoose from 'mongoose'; // mongoose@8.4.1
 
-interface Updateable {
-  method1(): boolean;
+interface MaybeUpdateable {
+  method1?(): boolean;
   lastUpdate?: Date;
 }
 
@@ -50,10 +50,10 @@ class Ticket {
 export const TicketModel = getModelForClass(Ticket);
 
 interface MaybeLastUpdate {
-  lastUpdate?: Updateable['lastUpdate'];
+  lastUpdate?: MaybeUpdateable['lastUpdate'];
 }
 
-function genericFunction<T extends MaybeLastUpdate, D extends mongoose.Document & Updateable>(
+function genericFunction<T extends MaybeLastUpdate, D extends mongoose.Document & MaybeUpdateable>(
   updDocData: T,
   dataDoc: D
 ): T & MaybeLastUpdate {
