@@ -7,20 +7,28 @@ import * as mongoose from 'mongoose'; // mongoose@8.6.1
 class User {
   @prop()
   public username?: string;
+
+  constructor(
+    @prop() public test?: string,
+    public t?: any,
+    @prop() public s?: number
+  ) {}
 }
 
 const UserModel = getModelForClass(User);
 
-async function main() {
-  await mongoose.connect(`mongodb://localhost:27017/`, {
-    dbName: 'verifyMASTER',
-  });
+console.log('test', UserModel.schema);
 
-  const doc = new UserModel({ username: 'user1' });
+// async function main() {
+//   await mongoose.connect(`mongodb://localhost:27017/`, {
+//     dbName: 'verifyMASTER',
+//   });
 
-  console.log(doc);
+//   const doc = new UserModel({ username: 'user1' });
 
-  await mongoose.disconnect();
-}
+//   console.log(doc);
 
-main();
+//   await mongoose.disconnect();
+// }
+
+// main();
