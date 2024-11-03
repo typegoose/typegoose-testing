@@ -1,26 +1,29 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // NodeJS: 22.8.0
 // MongoDB: 7.0 (Docker)
 // Typescript 5.3.3
-import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@12.9.0
 import * as mongoose from 'mongoose'; // mongoose@8.8.0
 
-class User {
-  @prop()
-  public username?: string;
+interface Foo {
+  _id: mongoose.Types.ObjectId;
+  bar: string;
 }
+type FooDocument = Foo & mongoose.Document<mongoose.Types.ObjectId>;
+type FooLean = mongoose.GetLeanResultType<Foo, Foo, unknown>;
 
-const UserModel = getModelForClass(User);
+const schema = new mongoose.Schema<Foo>(
+  {
+    bar: { type: String, required: true },
+  },
+  { collection: 'foo', timestamps: true }
+);
+
+const FooModel = mongoose.model<Foo>('foo', schema);
 
 async function main() {
-  await mongoose.connect(`mongodb://localhost:27017/`, {
-    dbName: 'verifyMASTER',
-  });
-
-  const doc = new UserModel({ username: 'user1' });
-
-  console.log(doc);
-
-  await mongoose.disconnect();
+  const test1: FooLean[] = await FooModel.find({ bar: 'asd' }).lean();
+  const test2: Foo[] = await FooModel.find({ bar: 'asd' }).lean();
+  // const test3: FooDocument[] = await FooModel.find({ bar: 'asd' }).lean();
 }
 
 main();
