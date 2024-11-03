@@ -136,24 +136,24 @@
   resolved "https://registry.yarnpkg.com/@tsconfig/node16/-/node16-1.0.2.tgz#423c77877d0569db20e1fc80885ac4118314010e"
   integrity sha512-eZxlbI8GZscaGS7kkc/trHTT5xgrjH3/1n2JDwusC9iahPKWMRvRjJSAN5mCXviuTGQ/lHnhvv8Q1YTpnfz9gA==
 
-"@typegoose/auto-increment@^4.7.0":
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/@typegoose/auto-increment/-/auto-increment-4.7.0.tgz#8f5568c1c9e16dc33c43792522090e7780981d6b"
-  integrity sha512-R2iGiRG1y4ElSdmzFhKT8C3Gh1YAIiHeTYuiIWZz/GEBQ477LGBKtwCfmPOH9xsNsfV7Hw0nRpUzDjbIOopa6w==
+"@typegoose/auto-increment@^4.8.0":
+  version "4.8.0"
+  resolved "https://registry.yarnpkg.com/@typegoose/auto-increment/-/auto-increment-4.8.0.tgz#4654764c6f961c5da5318baf366aa99caf7f07bb"
+  integrity sha512-VMPq89ryGiP4HDQZtnz1j6wHZRxe6p9AfNOx8xRV0QPX6H18cHeeFq0evEF8vz44/OKMuwYbSAeF4zdWOyfLzw==
   dependencies:
     loglevel "^1.9.2"
-    tslib "^2.7.0"
+    tslib "^2.8.1"
 
-"@typegoose/typegoose@12.8.0":
-  version "12.8.0"
-  resolved "https://registry.yarnpkg.com/@typegoose/typegoose/-/typegoose-12.8.0.tgz#0751a78ae2da406e4503c7e2f319da2412acc928"
-  integrity sha512-YCeYYH0joT4n48WRUfofPq3KBg6OQw1zR6wB4WKflkFYf9SC4P29hf0PlmsiA+hAbubd3Qn51KmkjiUJetJmFQ==
+"@typegoose/typegoose@12.9.0":
+  version "12.9.0"
+  resolved "https://registry.yarnpkg.com/@typegoose/typegoose/-/typegoose-12.9.0.tgz#ef62dd975600fc5a3f84e47bbeca30b6ec110365"
+  integrity sha512-qqA6K81GwyF4yLjvfb9fy5wOIWUkkOwj6R4fUoE4o9sMfuuwgZixhAnaL/4DjUMXAa0EPZXPjQa59IkxoU/4/w==
   dependencies:
     lodash "^4.17.20"
     loglevel "^1.9.2"
     reflect-metadata "^0.2.2"
     semver "^7.6.3"
-    tslib "^2.7.0"
+    tslib "^2.8.1"
 
 "@types/json-schema@^7.0.12":
   version "7.0.15"
@@ -872,23 +872,23 @@ mongodb-connection-string-url@^3.0.0:
     "@types/whatwg-url" "^11.0.2"
     whatwg-url "^13.0.0"
 
-mongodb@6.9.0:
-  version "6.9.0"
-  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-6.9.0.tgz#743ebfff6b3c14b04ac6e00a55e30d4127d3016d"
-  integrity sha512-UMopBVx1LmEUbW/QE0Hw18u583PEDVQmUmVzzBRH0o/xtE9DBRA5ZYLOjpLIa03i8FXjzvQECJcqoMvCXftTUA==
+mongodb@~6.10.0:
+  version "6.10.0"
+  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-6.10.0.tgz#20a9f1cf3c6829e75fc39e6d8c1c19f164209c2e"
+  integrity sha512-gP9vduuYWb9ZkDM546M+MP2qKVk5ZG2wPF63OvSRuUbqCR+11ZCAE1mOfllhlAG0wcoJY5yDL/rV3OmYEwXIzg==
   dependencies:
     "@mongodb-js/saslprep" "^1.1.5"
     bson "^6.7.0"
     mongodb-connection-string-url "^3.0.0"
 
-mongoose@8.7.1:
-  version "8.7.1"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-8.7.1.tgz#832b58c95d457c8a202da5eb17adfb8cdce9a0c7"
-  integrity sha512-RpNMyhyzLVCVbf8xTVbrf/18G3MqQzNw5pJdvOJ60fzbCa3cOZzz9L+8XpqzBXtRlgZGWv0T7MmOtvrT8ocp1Q==
+mongoose@8.8.0:
+  version "8.8.0"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-8.8.0.tgz#4475fdac6ce525ef4bdce406abd91c914e666f29"
+  integrity sha512-KluvgwnQB1GPOYZZXUHJRjS1TW6xxwTlf/YgjWExuuNanIe3W7VcR7dDXQVCIRk8L7NYge8EnoTcu2grWtN+XQ==
   dependencies:
     bson "^6.7.0"
     kareem "2.6.3"
-    mongodb "6.9.0"
+    mongodb "~6.10.0"
     mpath "0.9.0"
     mquery "5.0.0"
     ms "2.1.3"
@@ -1158,10 +1158,10 @@ tslib@^2.6.2:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.6.2.tgz#703ac29425e7b37cd6fd456e92404d46d1f3e4ae"
   integrity sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==
 
-tslib@^2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.7.0.tgz#d9b40c5c40ab59e8738f297df3087bf1a2690c01"
-  integrity sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==
+tslib@^2.8.1:
+  version "2.8.1"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.8.1.tgz#612efe4ed235d567e8aba5f2a5fab70280ade83f"
+  integrity sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==
 
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"
