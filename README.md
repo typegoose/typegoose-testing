@@ -2,6 +2,11 @@ This Project is used to verify Typegoose-issues
 
 only branches that need to be shared are to find here
 
+**ESM NOTE**
+This branch is made for ESM testing as is meant to be used in conjunction with typegoose's branch `feature/esm`.
+
+To use the local typegoose version, either pack it into a `tgz` and install it, or simply use `yarn link @typegoose/typegoose`.
+
 ## Setup
 
 ```sh
