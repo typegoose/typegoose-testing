@@ -6,6 +6,7 @@
   "engines": {
     "node": ">=16.20.1"
   },
+  "type": "module",
   "files": [
     "lib/*.js",
     "lib/*.d.ts"
