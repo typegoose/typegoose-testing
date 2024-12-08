@@ -144,10 +144,9 @@
     loglevel "^1.9.2"
     tslib "^2.8.1"
 
-"@typegoose/typegoose@12.9.0":
-  version "12.9.0"
-  resolved "https://registry.yarnpkg.com/@typegoose/typegoose/-/typegoose-12.9.0.tgz#ef62dd975600fc5a3f84e47bbeca30b6ec110365"
-  integrity sha512-qqA6K81GwyF4yLjvfb9fy5wOIWUkkOwj6R4fUoE4o9sMfuuwgZixhAnaL/4DjUMXAa0EPZXPjQa59IkxoU/4/w==
+"@typegoose/typegoose@file:./typegoose.tgz":
+  version "12.9.1"
+  resolved "file:./typegoose.tgz#37a79805b51c579c73dac30eabcbdc15f098f6a4"
   dependencies:
     lodash "^4.17.20"
     loglevel "^1.9.2"

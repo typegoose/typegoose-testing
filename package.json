@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@typegoose/auto-increment": "^4.8.0",
-    "@typegoose/typegoose": "12.9.0",
+    "@typegoose/typegoose": "file:./typegoose.tgz",
     "mongoose": "8.8.4"
   }
 }
