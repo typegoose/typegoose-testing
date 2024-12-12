@@ -13,7 +13,12 @@ class TokenPojo {
   @prop()
   public expiresAt?: string;
 
-  constructor(anatomy: Partial<TokenPojo> = {}) {}
+  constructor(anatomy: Partial<TokenPojo> = {}) {
+    for (const [key, val] of Object.entries(anatomy)) {
+      // @ts-expect-error This is just for quick assignment showcase
+      this[key] = val;
+    }
+  }
 
   hash?(this: DocumentType<TokenPojo>) {
     return this._id === undefined ? '' : this._id;
@@ -24,12 +29,17 @@ const TokenPojoModel = getModelForClass(TokenPojo);
 
 class EncipheredTokensPojo {
   @prop({ ref: () => TokenPojo })
-  public accessToken?: Ref<TokenPojo>;
+  public accessToken?: Ref<TokenPojo> | TokenPojo;
 
   @prop({ ref: () => TokenPojo })
-  public refreshToken?: Ref<TokenPojo>;
+  public refreshToken?: Ref<TokenPojo> | TokenPojo;
 
-  constructor(anatomy: Partial<EncipheredTokensPojo> = {}) {}
+  constructor(anatomy: Partial<EncipheredTokensPojo> = {}) {
+    for (const [key, val] of Object.entries(anatomy)) {
+      // @ts-expect-error This is just for quick assignment showcase
+      this[key] = val;
+    }
+  }
 
   hash?(this: DocumentType<TokenPojo>) {
     return this._id === undefined ? '' : this._id;
@@ -40,9 +50,14 @@ export const EncipheredTokensPojoModel = getModelForClass(EncipheredTokensPojo);
 
 class UserPojo {
   @prop({ ref: () => EncipheredTokensPojo })
-  public tokens?: Ref<EncipheredTokensPojo>;
+  public tokens?: Ref<EncipheredTokensPojo> | EncipheredTokensPojo;
 
-  constructor(anatomy: Partial<UserPojo> = {}) {}
+  constructor(anatomy: Partial<UserPojo> = {}) {
+    for (const [key, val] of Object.entries(anatomy)) {
+      // @ts-expect-error This is just for quick assignment showcase
+      this[key] = val;
+    }
+  }
 
   hash?(this: DocumentType<TokenPojo>): mongoose.Types.ObjectId | string {
     return this._id === undefined ? '' : this._id;
@@ -59,27 +74,25 @@ async function main() {
   const expiresAtInt = Date.now() + 300000; // 5 minutes later
   const expiresAt = new Date(expiresAtInt).toISOString();
 
-  const accessToken = new TokenPojoModel({
+  const accessToken = new TokenPojo({
     token: 'dummy token',
     expiresAt,
   });
 
-  const refreshToken = new TokenPojoModel({
+  const refreshToken = new TokenPojo({
     token: 'dummy token',
     expiresAt,
   });
 
-  await Promise.all([accessToken.save(), refreshToken.save()]);
-
-  const user = new UserPojoModel({
-    tokens: new EncipheredTokensPojoModel({
+  const user = new UserPojo({
+    tokens: new EncipheredTokensPojo({
       accessToken: accessToken,
       refreshToken: refreshToken,
     }),
   });
 
-  await (user.tokens as DocumentType<EncipheredTokensPojo>).save();
-  await user.save();
+  // all classes are now actual class instances, not documents
+  console.log('user', user);
 
   await mongoose.disconnect();
 }
