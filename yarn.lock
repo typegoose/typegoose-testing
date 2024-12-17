@@ -144,10 +144,10 @@
     loglevel "^1.9.2"
     tslib "^2.8.1"
 
-"@typegoose/typegoose@12.10.0":
-  version "12.10.0"
-  resolved "https://registry.yarnpkg.com/@typegoose/typegoose/-/typegoose-12.10.0.tgz#d705ba2035dc89e4a76a6c4559eacffe4f796d41"
-  integrity sha512-vKS4ajTibfHFZJ2LosLEhALvb6f7v8rM4baiI8SGdIGZwVKHJilQIcOeG96/luTjNylvVOweWhOfAB4KQF+lGA==
+"@typegoose/typegoose@12.10.1":
+  version "12.10.1"
+  resolved "https://registry.yarnpkg.com/@typegoose/typegoose/-/typegoose-12.10.1.tgz#f7e57c17f87d4b1f72f1cea267615159b5f13f1f"
+  integrity sha512-ueJx86GkNQX9ZaWGAeAHItKPK31OhcHVGSbzjSmjsocXztw7QEN+y7NeFgDRB/2O4TK2i36cbkVmVWjHV1B/cg==
   dependencies:
     lodash "^4.17.20"
     loglevel "^1.9.2"
@@ -881,10 +881,10 @@ mongodb@~6.12.0:
     bson "^6.10.1"
     mongodb-connection-string-url "^3.0.0"
 
-mongoose@8.9.0:
-  version "8.9.0"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-8.9.0.tgz#d98c7d7e899dd5d3a1db020d340306b02db44049"
-  integrity sha512-b58zY3PLNBcoz6ZXFckr0leJcVVBMAOBvD+7Bj2ZjghAwntXmNnqwlDixTKQU3UYoQIGTv+AQx/0ThsvaeVrCA==
+mongoose@8.9.1:
+  version "8.9.1"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-8.9.1.tgz#3fbb4661b2ecd455cdaf9ba1112e7a3e023177b3"
+  integrity sha512-whM6lWMdeKlUm4d2LSLS/q6cWtTp13lUrL5hy2YTsQdTSN+dsAu8HLdLUQOEgtBE59qp4IqLrjSXCSETbxhkQQ==
   dependencies:
     bson "^6.10.1"
     kareem "2.6.3"
