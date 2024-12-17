@@ -23,7 +23,7 @@
   "author": "hasezoey",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "~16.11.7",
+    "@types/node": "~22.10.2",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8.56.0",
@@ -31,7 +31,7 @@
     "eslint-plugin-prettier": "^5.2.1",
     "prettier": "^3.3.3",
     "ts-node": "^10.9.2",
-    "typescript": "5.4.5"
+    "typescript": "^5.7.0"
   },
   "dependencies": {
     "@typegoose/auto-increment": "^4.9.0",
