@@ -83,10 +83,10 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@mongodb-js/saslprep@^1.1.5":
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/@mongodb-js/saslprep/-/saslprep-1.1.6.tgz#54da3f794c71a17445740fe2b74882e0c76a3058"
-  integrity sha512-jqTTXQ46H8cAxmXBu8wm1HTSIMBMrIcoVrsjdQkKdMBj3il/fSCgWyya4P2I1xjPBl69mw+nRphrPlcIqBd20Q==
+"@mongodb-js/saslprep@^1.1.9":
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/@mongodb-js/saslprep/-/saslprep-1.1.9.tgz#e974bab8eca9faa88677d4ea4da8d09a52069004"
+  integrity sha512-tVkljjeEaAhCqTzajSdgbQ6gE6f3oneVwa3iXR6csiEwXXOFsiC6Uh9iAjAhXPtqa/XMDHWjjeNH/77m/Yq2dw==
   dependencies:
     sparse-bitfield "^3.0.3"
 
@@ -136,18 +136,18 @@
   resolved "https://registry.yarnpkg.com/@tsconfig/node16/-/node16-1.0.2.tgz#423c77877d0569db20e1fc80885ac4118314010e"
   integrity sha512-eZxlbI8GZscaGS7kkc/trHTT5xgrjH3/1n2JDwusC9iahPKWMRvRjJSAN5mCXviuTGQ/lHnhvv8Q1YTpnfz9gA==
 
-"@typegoose/auto-increment@^4.8.0":
-  version "4.8.0"
-  resolved "https://registry.yarnpkg.com/@typegoose/auto-increment/-/auto-increment-4.8.0.tgz#4654764c6f961c5da5318baf366aa99caf7f07bb"
-  integrity sha512-VMPq89ryGiP4HDQZtnz1j6wHZRxe6p9AfNOx8xRV0QPX6H18cHeeFq0evEF8vz44/OKMuwYbSAeF4zdWOyfLzw==
+"@typegoose/auto-increment@^4.9.0":
+  version "4.9.0"
+  resolved "https://registry.yarnpkg.com/@typegoose/auto-increment/-/auto-increment-4.9.0.tgz#96337fed7756a233810da918db20901215be3a9e"
+  integrity sha512-nUY1c9MSzAQL6l1C1MPVAEsrlMorYBNEOFKb8lOMq1k2WNVlew7lUCFSZueAX+JdlEncABwREkq+Ks1pX05Azg==
   dependencies:
     loglevel "^1.9.2"
     tslib "^2.8.1"
 
-"@typegoose/typegoose@12.9.0":
-  version "12.9.0"
-  resolved "https://registry.yarnpkg.com/@typegoose/typegoose/-/typegoose-12.9.0.tgz#ef62dd975600fc5a3f84e47bbeca30b6ec110365"
-  integrity sha512-qqA6K81GwyF4yLjvfb9fy5wOIWUkkOwj6R4fUoE4o9sMfuuwgZixhAnaL/4DjUMXAa0EPZXPjQa59IkxoU/4/w==
+"@typegoose/typegoose@12.10.0":
+  version "12.10.0"
+  resolved "https://registry.yarnpkg.com/@typegoose/typegoose/-/typegoose-12.10.0.tgz#d705ba2035dc89e4a76a6c4559eacffe4f796d41"
+  integrity sha512-vKS4ajTibfHFZJ2LosLEhALvb6f7v8rM4baiI8SGdIGZwVKHJilQIcOeG96/luTjNylvVOweWhOfAB4KQF+lGA==
   dependencies:
     lodash "^4.17.20"
     loglevel "^1.9.2"
@@ -357,10 +357,10 @@ braces@^3.0.2:
   dependencies:
     fill-range "^7.0.1"
 
-bson@^6.7.0:
-  version "6.7.0"
-  resolved "https://registry.yarnpkg.com/bson/-/bson-6.7.0.tgz#51973b132cdc424c8372fda3cb43e3e3e2ae2227"
-  integrity sha512-w2IquM5mYzYZv6rs3uN2DZTOBe2a0zXLj53TGDqwF4l6Sz/XsISrisXOJihArF9+BZ6Cq/GjVht7Sjfmri7ytQ==
+bson@^6.10.1:
+  version "6.10.1"
+  resolved "https://registry.yarnpkg.com/bson/-/bson-6.10.1.tgz#dcd04703178f5ecf5b25de04edd2a95ec79385d3"
+  integrity sha512-P92xmHDQjSKPLHqFxefqMxASNq/aWJMEZugpCjf+AF/pgcUpMMQCg7t7+ewko0/u8AapvF3luf/FoehddEK+sA==
 
 callsites@^3.0.0:
   version "3.1.0"
@@ -872,23 +872,23 @@ mongodb-connection-string-url@^3.0.0:
     "@types/whatwg-url" "^11.0.2"
     whatwg-url "^13.0.0"
 
-mongodb@~6.10.0:
-  version "6.10.0"
-  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-6.10.0.tgz#20a9f1cf3c6829e75fc39e6d8c1c19f164209c2e"
-  integrity sha512-gP9vduuYWb9ZkDM546M+MP2qKVk5ZG2wPF63OvSRuUbqCR+11ZCAE1mOfllhlAG0wcoJY5yDL/rV3OmYEwXIzg==
+mongodb@~6.12.0:
+  version "6.12.0"
+  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-6.12.0.tgz#8b0bda1b18cbb3f0aec8ab4119c5dc535a43c444"
+  integrity sha512-RM7AHlvYfS7jv7+BXund/kR64DryVI+cHbVAy9P61fnb1RcWZqOW1/Wj2YhqMCx+MuYhqTRGv7AwHBzmsCKBfA==
   dependencies:
-    "@mongodb-js/saslprep" "^1.1.5"
-    bson "^6.7.0"
+    "@mongodb-js/saslprep" "^1.1.9"
+    bson "^6.10.1"
     mongodb-connection-string-url "^3.0.0"
 
-mongoose@8.8.0:
-  version "8.8.0"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-8.8.0.tgz#4475fdac6ce525ef4bdce406abd91c914e666f29"
-  integrity sha512-KluvgwnQB1GPOYZZXUHJRjS1TW6xxwTlf/YgjWExuuNanIe3W7VcR7dDXQVCIRk8L7NYge8EnoTcu2grWtN+XQ==
+mongoose@8.9.0:
+  version "8.9.0"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-8.9.0.tgz#d98c7d7e899dd5d3a1db020d340306b02db44049"
+  integrity sha512-b58zY3PLNBcoz6ZXFckr0leJcVVBMAOBvD+7Bj2ZjghAwntXmNnqwlDixTKQU3UYoQIGTv+AQx/0ThsvaeVrCA==
   dependencies:
-    bson "^6.7.0"
+    bson "^6.10.1"
     kareem "2.6.3"
-    mongodb "~6.10.0"
+    mongodb "~6.12.0"
     mpath "0.9.0"
     mquery "5.0.0"
     ms "2.1.3"
