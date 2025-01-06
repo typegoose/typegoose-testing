@@ -4,7 +4,12 @@
 import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@12.10.1
 import * as mongoose from 'mongoose'; // mongoose@8.9.1
 
-class User {
+class Base {
+  @prop()
+  public _id!: string;
+}
+
+class User extends Base {
   @prop()
   public username?: string;
 }
@@ -16,7 +21,7 @@ async function main() {
     dbName: 'verifyMASTER',
   });
 
-  const doc = new UserModel({ username: 'user1' });
+  const doc = new UserModel({ _id: 'hello', username: 'name' });
 
   console.log(doc);
 
