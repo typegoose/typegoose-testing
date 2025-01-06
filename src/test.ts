@@ -1,12 +1,12 @@
 // NodeJS: 22.8.0
 // MongoDB: 7.0 (Docker)
 // Typescript 5.3.3
-import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@12.10.1
+import { Severity, getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@12.10.1
 import * as mongoose from 'mongoose'; // mongoose@8.9.1
 
 class Base {
-  @prop()
-  public _id!: string;
+  @prop({ allowMixed: Severity.ALLOW })
+  public _id!: mongoose.Types.ObjectId | string | number;
 }
 
 class User extends Base {
