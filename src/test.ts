@@ -4,6 +4,10 @@
 import { Ref, getModelForClass, modelOptions, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@12.14.0
 import * as mongoose from 'mongoose'; // mongoose@8.13.2
 
+@modelOptions({
+  schemaOptions: { collection: 'user' },
+  options: { automaticName: true },
+})
 class UserPojo {
   @prop({ type: String })
   emailAddress?: string[];
@@ -12,7 +16,7 @@ class UserPojo {
   password?: string[];
 
   @prop()
-  fileNmae?: string;
+  fileName?: string;
 
   @prop()
   size?: number;
