@@ -1,8 +1,8 @@
-// NodeJS: 23.4.0
+// NodeJS: 25.2.1
 // MongoDB: 7.0 (Docker)
 // Typescript 5.9.3
-import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@12.18.0
-import * as mongoose from 'mongoose'; // mongoose@8.17.1
+import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@13.0.0
+import * as mongoose from 'mongoose'; // mongoose@9.0.2
 
 class User {
   @prop()
