@@ -1,6 +1,6 @@
 // NodeJS: 23.4.0
 // MongoDB: 7.0 (Docker)
-// Typescript 5.3.3
+// Typescript 5.9.3
 import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@12.18.0
 import * as mongoose from 'mongoose'; // mongoose@8.17.1
 
