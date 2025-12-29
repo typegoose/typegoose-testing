@@ -18,11 +18,11 @@ git fetch --all
 git checkout -b local_branch_name_here origin/remote_branch_name_here
 
 # install all packages
-yarn install
+npm install
 
 # open your editor, if needed
 code .
 
 # run code
-yarn run run
+npm run run
 ```
