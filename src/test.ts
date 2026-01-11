@@ -107,7 +107,7 @@ async function main() {
   const req: FastifyRequest = {};
 
   const session = await SessionModel.findOne({})
-    .populate<{ user: User & { role: Role } }>({ path: 'user', populate: { path: 'role' } })
+    .populate<{ user: mongoose.Require_id<User> & { role: Role } }>({ path: 'user', populate: { path: 'role' } })
     .lean()
     .exec();
 
