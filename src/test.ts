@@ -6,12 +6,14 @@ import { getModelForClass, index, prop, Ref } from '@typegoose/typegoose'; // @t
 import * as mongoose from 'mongoose'; // mongoose@9.0.2
 
 interface FastifyRequest {
-  session?: Omit<mongoose.Require_id<Session>, 'user'> & {
-    user: mongoose.Require_id<User> & { role: Role };
+  session?: Omit<Session, 'user'> & {
+    user: User & { role: Role };
   };
 }
 
 class Role {
+  public _id!: mongoose.Types.ObjectId;
+
   @prop()
   public dummy?: string;
 }
@@ -24,6 +26,8 @@ class UserStats {
 }
 
 class User {
+  public _id!: mongoose.Types.ObjectId;
+
   @prop({ type: () => String, required: true, unique: true })
   public username!: string;
 
@@ -81,6 +85,8 @@ const UserModel = getModelForClass(User);
 @index({ user: 1 })
 @index({ token: 1 })
 class Session {
+  public _id!: mongoose.Types.ObjectId;
+
   @prop({ ref: () => 'User', required: true })
   public user!: Ref<User>;
 
@@ -107,7 +113,7 @@ async function main() {
   const req: FastifyRequest = {};
 
   const session = await SessionModel.findOne({})
-    .populate<{ user: mongoose.Require_id<User> & { role: Role } }>({ path: 'user', populate: { path: 'role' } })
+    .populate<{ user: User & { role: Role } }>({ path: 'user', populate: { path: 'role' } })
     .lean()
     .exec();
 
