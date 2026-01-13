@@ -1,26 +1,30 @@
 // NodeJS: 25.2.1
 // MongoDB: 7.0 (Docker)
 // Typescript 5.9.3
-import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@13.0.0
+import { buildSchema, prop, setGlobalOptions, setLogLevel, Severity } from '@typegoose/typegoose'; // @typegoose/typegoose@13.0.0
 import * as mongoose from 'mongoose'; // mongoose@9.0.2
 
-class User {
-  @prop()
-  public username?: string;
+setLogLevel('debug');
+setGlobalOptions({ options: { allowMixed: Severity.ERROR } });
+
+class TestOptions {
+  @prop({ type: () => mongoose.Schema.Types.Mixed })
+  public someMixed?: any;
 }
 
-const UserModel = getModelForClass(User);
+let thrown = false;
 
-async function main() {
-  await mongoose.connect(`mongodb://localhost:27017/`, {
-    dbName: 'verifyMASTER',
-  });
+try {
+  buildSchema(TestOptions);
+} catch (e) {
+  // expect throw TypeError
+  if (!(e instanceof TypeError)) {
+    throw new Error(`Expected to throw TypeError, but got: ${e}`);
+  }
 
-  const doc = new UserModel({ username: 'user1' });
-
-  console.log(doc);
-
-  await mongoose.disconnect();
+  thrown = true;
 }
 
-main();
+if (!thrown) {
+  throw new Error(`Expected to throw an error due to Mixed with Severity.ERROR`);
+}
