@@ -41,12 +41,12 @@ async function main() {
   ];
   await doc.save(); // [ { "id" : 2, "v" : 0 }, { "id" : 1, "v" : 0 } ]
   const fetched1 = await TestModel.findById(doc).orFail().lean();
-  console.log('first', JSON.stringify(doc) === JSON.stringify(fetched1));
+  console.log('first', JSON.stringify(doc) === JSON.stringify(fetched1), doc);
 
   doc.array[0].v = 999;
   await doc.save(); // nothing changed [ { "id" : 2, "v" : 0 }, { "id" : 1, "v" : 0 } ]
   const fetched2 = await TestModel.findById(doc).orFail().lean();
-  console.log('second', JSON.stringify(doc) === JSON.stringify(fetched2));
+  console.log('second', JSON.stringify(doc) === JSON.stringify(fetched2), doc);
 
   await mongoose.disconnect();
 }
