@@ -1,28 +1,22 @@
 // NodeJS: 25.2.1
 // MongoDB: 7.0 (Docker)
 // Typescript 5.9.3
-import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@13.0.0
-import * as mongoose from 'mongoose'; // mongoose@9.0.2
+import * as mongoose from 'mongoose'; // mongoose@9.1.4
 
-class TestArray {
-  @prop()
-  public id!: number;
-
-  @prop()
-  public v!: number;
-}
-
-class TestData {
-  @prop()
-  public _id!: string;
-
-  @prop({ type: () => [TestArray], _id: false })
-  public array: TestArray[];
-}
-
-const TestModel = getModelForClass(TestData, {
-  schemaOptions: { collection: 'test' },
+const child = new mongoose.Schema({
+  id: Number,
+  v: Number,
 });
+
+const parent = new mongoose.Schema({
+  _id: String,
+  array: {
+    type: [child],
+    _id: false,
+  },
+});
+
+const TestModel = mongoose.model('test', parent);
 
 async function main() {
   await mongoose.connect(`mongodb://localhost:27017/`, {
@@ -41,7 +35,9 @@ async function main() {
   const doc = await TestModel.findById('test').orFail();
 
   // switch positions
+  // @ts-expect-error Type mismatch, assigning a plain array to something that is "DocumentArray"
   doc.array = [doc.array[1], doc.array[0]];
+  // [doc.array[1], doc.array[0]] = [doc.array[0], doc.array[1]]; // this one actually works
   await doc.save(); // [ { "id" : 2, "v" : 0 }, { "id" : 1, "v" : 0 } ]
   const fetched1 = await TestModel.findById(doc).orFail().lean();
   // first true { _id: 'test', array: [ { id: 2, v: 0 }, { id: 1, v: 0 } ], __v: 1 }
