@@ -5,12 +5,12 @@ import { getModelForClass, prop, PropType } from '@typegoose/typegoose'; // @typ
 // import * as mongoose from 'mongoose'; // mongoose@9.2.3
 
 class User {
-  @prop({ type: Map, innerOptions: { type: String } }, PropType.MAP)
+  @prop({ type: Map /* innerOptions: { type: String } */ }, PropType.MAP)
   public test?: string;
 }
 
 // Error:
-// /typegoose-testing/node_modules/@typegoose/typegoose/lib/internal/utils.ts:525
+// /typegoose-testing/node_modules/@typegoose/typegoose/lib/internal/utils.ts:522
 //         for (const [key, value] of Object.entries(options.innerOptions)) {
 //                                          ^
 //
