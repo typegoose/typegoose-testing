@@ -10,7 +10,7 @@ class User {
 }
 
 // Error:
-// /typegoose-testing/node_modules/@typegoose/typegoose/lib/internal/utils.js:438
+// /typegoose-testing/node_modules/@typegoose/typegoose/lib/internal/utils.ts:525
 //         for (const [key, value] of Object.entries(options.innerOptions)) {
 //                                          ^
 //
