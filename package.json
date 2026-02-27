@@ -33,8 +33,8 @@
     "typescript-eslint": "^8.50.0"
   },
   "dependencies": {
-    "@typegoose/auto-increment": "^5.0.0",
-    "@typegoose/typegoose": "13.0.0",
-    "mongoose": "9.0.2"
+    "@typegoose/auto-increment": "^5.0.1",
+    "@typegoose/typegoose": "13.2.0-beta.1",
+    "mongoose": "9.2.3"
   }
 }
