@@ -1,26 +1,18 @@
 // NodeJS: 25.2.1
 // MongoDB: 7.0 (Docker)
 // Typescript 5.9.3
-import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@13.2.0-beta.1
-import * as mongoose from 'mongoose'; // mongoose@9.2.3
+import { getModelForClass, prop, PropType } from '@typegoose/typegoose'; // @typegoose/typegoose@13.2.0-beta.1
+// import * as mongoose from 'mongoose'; // mongoose@9.2.3
 
 class User {
-  @prop()
-  public username?: string;
+  @prop({ type: Map, innerOptions: { type: String } }, PropType.MAP)
+  public test?: string;
 }
 
-const UserModel = getModelForClass(User);
-
-async function main() {
-  await mongoose.connect(`mongodb://localhost:27017/`, {
-    dbName: 'verifyMASTER',
-  });
-
-  const doc = new UserModel({ username: 'user1' });
-
-  console.log(doc);
-
-  await mongoose.disconnect();
-}
-
-main();
+// Error:
+// /typegoose-testing/node_modules/@typegoose/typegoose/lib/internal/utils.js:438
+//         for (const [key, value] of Object.entries(options.innerOptions)) {
+//                                          ^
+//
+// TypeError: Cannot convert undefined or null to object
+getModelForClass(User);
