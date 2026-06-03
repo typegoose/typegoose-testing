@@ -1,24 +1,35 @@
 // NodeJS: 25.2.1
 // MongoDB: 7.0 (Docker)
 // Typescript 5.9.3
-import { getModelForClass, prop } from '@typegoose/typegoose'; // @typegoose/typegoose@13.3.0
 import * as mongoose from 'mongoose'; // mongoose@9.6.0
 
-class User {
-  @prop()
-  public username?: string;
+interface User {
+  dummy: string;
 }
 
-const UserModel = getModelForClass(User);
+interface Other {
+  to: mongoose.PopulatedDoc<User>;
+}
+
+const userSchema = new mongoose.Schema({ dummy: String });
+const userModel = mongoose.model<User>('user', userSchema);
+
+const otherSchema = new mongoose.Schema({ to: { type: mongoose.Types.ObjectId, ref: 'user' } });
+const otherModel = mongoose.model<Other>('other', otherSchema);
 
 async function main() {
   await mongoose.connect(`mongodb://localhost:27017/`, {
     dbName: 'verifyMASTER',
   });
 
-  const doc = new UserModel({ username: 'user1' });
+  const user = await userModel.create({ dummy: 'hello' });
 
-  console.log(doc);
+  const userId = user._id.toString();
+
+  // type error: "Type 'string' is not assignable to ..."
+  const other = await otherModel.create({ to: userId });
+
+  console.log('Done', other);
 
   await mongoose.disconnect();
 }
