@@ -1,21 +1,21 @@
 // NodeJS: 25.2.1
 // MongoDB: 7.0 (Docker)
 // Typescript 5.9.3
+import { getModelForClass, prop, Ref } from '@typegoose/typegoose'; // @typegoose/typegoose@13.3.0
 import * as mongoose from 'mongoose'; // mongoose@9.6.0
 
-interface User {
-  dummy: string;
+class User {
+  @prop()
+  public dummy?: string;
 }
 
-interface Other {
-  to: mongoose.PopulatedDoc<User>;
+class Other {
+  @prop({ ref: () => User })
+  public to: Ref<User>;
 }
 
-const userSchema = new mongoose.Schema({ dummy: String });
-const userModel = mongoose.model<User>('user', userSchema);
-
-const otherSchema = new mongoose.Schema({ to: { type: mongoose.Types.ObjectId, ref: 'user' } });
-const otherModel = mongoose.model<Other>('other', otherSchema);
+const userModel = getModelForClass(User);
+const otherModel = getModelForClass(Other);
 
 async function main() {
   await mongoose.connect(`mongodb://localhost:27017/`, {
